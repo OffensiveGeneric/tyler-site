@@ -13,5 +13,14 @@ npm run db:migrate
 npm run build
 sudo systemctl restart tyler-site.service
 
-curl --fail --silent --show-error --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:4321/api/health >/dev/null
-echo "Deployment successful: $(git rev-parse --short HEAD)"
+for attempt in $(seq 1 20); do
+  if curl --fail --silent --show-error http://127.0.0.1:4321/api/health >/dev/null; then
+    echo "Health check passed on attempt $attempt"
+    echo "Deployment successful: $(git rev-parse --short HEAD)"
+    exit 0
+  fi
+  sleep 1
+done
+
+echo "Health check failed after 20 attempts" >&2
+exit 1
