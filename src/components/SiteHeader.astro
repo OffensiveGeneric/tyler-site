@@ -1,0 +1,27 @@
+---
+const links = [
+  { href: "/photography", label: "Photography" },
+  { href: "/blog", label: "Writing" },
+  { href: "/cv", label: "CV" },
+  { href: "/about", label: "About" },
+];
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header wrapper">
+  <a class="wordmark" href="/" aria-label="Tyler Kleint home">
+    <span class="wordmark-mark">TK</span>
+    <span>Tyler Kleint</span>
+  </a>
+  <nav aria-label="Main navigation">
+    <ul class="nav-list">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class:list={{ active: currentPath.startsWith(link.href) }}>
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
