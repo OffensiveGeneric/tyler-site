@@ -1,23 +1,10 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
-import Ornament from "../components/Ornament.astro";
+import CVContent from "../components/CVContent.astro";
 ---
 
-<SiteLayout title="Home" description="The personal site of Tyler Kleint: photographs, writing, and work.">
-  <section class="wrapper hero page-intro">
-    <div>
-      <p class="eyebrow">Personal archive / 2026</p>
-      <Ornament kind="divider" label="THE WORKS OF" />
-      <h1>Looking closely at ordinary things.</h1>
-      <a class="section-link" href="/photography">Enter the photographs ↗</a>
-    </div>
-    <div class="hero-note">
-      <strong>A place for work in progress.</strong>
-      <p>Photographs, notes, and a record of the things I’m learning to make.</p>
-    </div>
-  </section>
-  <section class="wrapper content-grid">
-    <div>Now</div>
-    <div><p>I’m rebuilding this site from the ground up as a small, thoughtful web project. The first version is intentionally quiet: good type, clear pages, and room to grow.</p></div>
+<SiteLayout title="CV" description="The curriculum vitae of Tyler Kleint.">
+  <section class="wrapper cv-page-intro">
+    <CVContent />
   </section>
 </SiteLayout>

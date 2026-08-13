@@ -1,8 +1,8 @@
 ---
 const links = [
+  { href: "/", label: "CV" },
   { href: "/photography", label: "Photography" },
   { href: "/blog", label: "Writing" },
-  { href: "/cv", label: "CV" },
   { href: "/about", label: "About" },
 ];
 const currentPath = Astro.url.pathname;
@@ -19,7 +19,7 @@ const { mode = "jewel" } = Astro.props;
     <ul class="nav-list">
       {links.map((link) => (
         <li>
-          <a href={link.href} class:list={{ active: currentPath.startsWith(link.href) }}>
+          <a href={link.href} class:list={{ active: link.href === "/" ? currentPath === "/" || currentPath.startsWith("/cv") : currentPath.startsWith(link.href) }}>
             <span class="nav-index">[{String(links.indexOf(link) + 1).padStart(2, "0")}]</span> {link.label}
           </a>
         </li>

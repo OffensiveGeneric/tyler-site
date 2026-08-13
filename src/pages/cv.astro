@@ -1,8 +1,10 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
-import Ornament from "../components/Ornament.astro";
+import CVContent from "../components/CVContent.astro";
 ---
-<SiteLayout title="CV">
-  <section class="wrapper page-intro"><p class="eyebrow">Curriculum vitae</p><Ornament kind="divider" label="CV / MMXXVI" /><h1>Selected work and study.</h1><p>A readable, printable CV will live here as semantic HTML rather than as an embedded document.</p></section>
-  <section class="wrapper content-grid"><div>Under construction</div><div><p>The content will be added once the page structure is in place. The eventual layout will be designed for both screen reading and browser-to-PDF printing.</p></div></section>
+
+<SiteLayout title="CV" description="The curriculum vitae of Tyler Kleint.">
+  <section class="wrapper cv-page-intro">
+    <CVContent />
+  </section>
 </SiteLayout>
