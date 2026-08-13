@@ -8,7 +8,11 @@ import Ornament from "./Ornament.astro";
     <Ornament kind="divider" label="THE WORKS OF" />
     <h1 id="cv-title">Tyler Allen Laboe Kleint</h1>
     <p class="cv-subtitle">Linux systems administrator &amp; computer scientist.</p>
-    <p class="cv-contact">Bronx, New York · <a href="mailto:tyleralk@gmail.com">tyleralk@gmail.com</a> · (914) 531-6570</p>
+    <address class="cv-contact">
+      Bronx, New York ·
+      <button class="contact-reveal" type="button" data-contact-kind="email" data-contact-value="dHlsZXJhbGtAZ21haWwuY29t">reveal email</button> ·
+      <button class="contact-reveal" type="button" data-contact-kind="phone" data-contact-value="KDkxNCkgNTMxLTY1NzA=">reveal phone</button>
+    </address>
   </header>
 
   <div class="cv-body">
@@ -35,3 +39,16 @@ import Ornament from "./Ornament.astro";
   </div>
   <footer class="cv-colophon">Typeset in Cormorant Garamond, Newsreader &amp; IBM Plex Mono. Set by hand in HTML and CSS.</footer>
 </article>
+
+<script is:inline>
+  document.querySelectorAll("[data-contact-value]").forEach((control) => {
+    control.addEventListener("click", () => {
+      const value = atob(control.dataset.contactValue ?? "");
+      if (control.dataset.contactKind === "email") {
+        control.replaceWith(Object.assign(document.createElement("a"), { href: `mailto:${value}`, textContent: value }));
+      } else {
+        control.replaceWith(Object.assign(document.createElement("span"), { textContent: value }));
+      }
+    }, { once: true });
+  });
+</script>
