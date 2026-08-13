@@ -1,25 +1,25 @@
 ---
-import dividerUrl from "../ornaments/divider.svg";
-import vineUrl from "../ornaments/rule-vine.svg";
-import rosetteUrl from "../ornaments/rosette.svg";
-import cornerUrl from "../ornaments/corner-leaf.svg";
-import frameCornerUrl from "../ornaments/frame-corner.svg";
-
 interface Props {
   kind?: "divider" | "vine" | "rosette" | "corner" | "frame-corner";
   label?: string;
 }
 
 const { kind = "divider", label } = Astro.props;
-const images = { divider: dividerUrl, vine: vineUrl, rosette: rosetteUrl, corner: cornerUrl, "frame-corner": frameCornerUrl };
-const image = images[kind];
 ---
 
 {kind === "divider" && (
   <div class="ornament ornament-divider" aria-hidden="true">
-    <span class="ornament-symbol" style={`--ornament-image: url(${image})`}></span><span class="ornament-rule"></span><span class="ornament-label">{label ?? ""}</span><span class="ornament-rule"></span><span class="ornament-symbol" style={`--ornament-image: url(${image})`}></span>
+    <svg class="ornament-symbol" viewBox="0 0 24 24"><path d="m12 1 2.7 6.8 7.3.5-5.6 4.7 1.8 7.1-6.2-3.8-6.2 3.8 1.8-7.1L2 8.3l7.3-.5L12 1Z" /></svg>
+    <span class="ornament-rule"></span><span class="ornament-label">{label ?? ""}</span><span class="ornament-rule"></span>
+    <svg class="ornament-symbol" viewBox="0 0 24 24"><path d="m12 1 2.7 6.8 7.3.5-5.6 4.7 1.8 7.1-6.2-3.8-6.2 3.8 1.8-7.1L2 8.3l7.3-.5L12 1Z" /></svg>
   </div>
 )}
-{kind !== "divider" && (
-  <span class:list={["ornament", `ornament-${kind}`]} style={`--ornament-image: url(${image})`} aria-hidden="true"></span>
+{kind === "vine" && (
+  <svg class="ornament ornament-vine" viewBox="0 0 160 24" aria-hidden="true"><path fill="none" stroke="currentColor" d="M1 12h158M25 12c7-10 14-10 21 0s14 10 21 0 14-10 21 0 14 10 21 0 14-10 21 0"/><path fill="currentColor" d="M43 7c-5-5-10-3-12 2 5 1 9 0 12-2Zm74 10c5 5 10 3 12-2-5-1-9 0-12 2Z"/></svg>
+)}
+{kind === "rosette" && (
+  <svg class="ornament ornament-rosette" viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor"><circle cx="24" cy="24" r="7"/><circle cx="24" cy="24" r="15"/><path d="M24 2v15M24 31v15M2 24h15M31 24h15M8.4 8.4l10.6 10.6M29 29l10.6 10.6M39.6 8.4 29 19M19 29 8.4 39.6"/></g></svg>
+)}
+{(kind === "corner" || kind === "frame-corner") && (
+  <svg class:list={["ornament", `ornament-${kind}`]} viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor"><path d={kind === "corner" ? "M2 42V2h40M2 20c13 0 21 8 21 21M2 31c8 0 13 5 13 13M2 2c25 0 45 20 45 45" : "M1 44V1h43M1 25c10 0 18 8 18 18M1 34c5 0 10 5 10 10M1 1c31 0 55 24 55 55"}/><path d={kind === "corner" ? "M2 2c11 8 19 18 24 31M2 2c8 11 18 19 31 24" : "M1 1c16 10 27 25 32 43"}/></g></svg>
 )}
