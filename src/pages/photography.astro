@@ -6,7 +6,7 @@ import { photos } from "../db/schema";
 export const prerender = false;
 const gallery = db.select().from(photos).all();
 ---
-<SiteLayout title="Photography">
+<SiteLayout title="Photography" mode="contact">
   <section class="wrapper page-intro">
     <p class="eyebrow">Photography</p><h1>Small observations.</h1>
     <p>A future home for photographs, sequences, and the stories that gather around them.</p>
@@ -16,7 +16,7 @@ const gallery = db.select().from(photos).all();
     <div>
       {gallery.length ? (
         <div class="photo-grid">
-          {gallery.map((photo) => <figure><img src={`/media/${photo.filename}`} alt={photo.title ?? ""} loading="lazy" /><figcaption>{photo.title ?? photo.slug}</figcaption></figure>)}
+          {gallery.map((photo, index) => <figure><img src={`/media/${photo.filename}`} alt={photo.title ?? ""} loading="lazy" /><figcaption>{String(index + 1).padStart(3, "0")} · {photo.dateTaken ?? photo.filename}</figcaption></figure>)}
         </div>
       ) : (
         <><p>The gallery is still being prepared. This space will eventually hold locally served photographs with thoughtful metadata and generous room to look.</p><div class="placeholder" aria-hidden="true">The first roll is developing.</div></>

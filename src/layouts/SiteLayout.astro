@@ -1,13 +1,15 @@
 ---
 import "../styles/global.css";
 import SiteHeader from "../components/SiteHeader.astro";
+import Ornament from "../components/Ornament.astro";
 
 interface Props {
   title: string;
   description?: string;
+  mode?: "jewel" | "contact";
 }
 
-const { title, description = "The personal site of Tyler Kleint." } = Astro.props;
+const { title, description = "The personal site of Tyler Kleint.", mode = "jewel" } = Astro.props;
 ---
 
 <!doctype html>
@@ -19,14 +21,17 @@ const { title, description = "The personal site of Tyler Kleint." } = Astro.prop
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title} — Tyler Kleint</title>
   </head>
-  <body>
-    <SiteHeader />
+  <body class:list={{ "contact-mode": mode === "contact", "jewel-mode": mode === "jewel" }}>
+    <SiteHeader mode={mode} />
     <main>
       <slot />
     </main>
     <footer class="site-footer wrapper">
-      <p>© {new Date().getFullYear()} Tyler Kleint</p>
-      <p>Made slowly, with the web.</p>
+      {mode === "jewel" && <Ornament kind="divider" />}
+      <div class="footer-line">
+        <p>© {new Date().getFullYear()} Tyler Kleint</p>
+        <p>{mode === "contact" ? "Contact sheet / end of roll" : "Made by hand in HTML & CSS."}</p>
+      </div>
     </footer>
   </body>
 </html>
