@@ -13,5 +13,5 @@ npm run db:migrate
 npm run build
 sudo systemctl restart tyler-site.service
 
-curl --fail --silent --show-error http://127.0.0.1:4321/api/health >/dev/null
+curl --fail --silent --show-error --retry 10 --retry-delay 1 http://127.0.0.1:4321/api/health >/dev/null
 echo "Deployment successful: $(git rev-parse --short HEAD)"
