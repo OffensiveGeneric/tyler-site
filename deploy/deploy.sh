@@ -2,6 +2,7 @@
 set -euo pipefail
 
 app_dir=/srv/tyler-site/app
+export SITE_DB_PATH=/srv/tyler-site/data/site.db
 
 install -d -m 0750 /srv/tyler-site/data /srv/tyler-site/media
 cd "$app_dir"
