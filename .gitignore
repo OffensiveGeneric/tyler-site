@@ -1,5 +1,11 @@
 # build output
 dist/
+data/*.db
+data/*.db-*
+media/*
+!media/.gitkeep
+backups/*
+!backups/.gitkeep
 # generated types
 .astro/
 

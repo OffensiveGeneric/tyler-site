@@ -1,10 +1,26 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
+import { db } from "../db/client";
+import { photos } from "../db/schema";
+
+export const prerender = false;
+const gallery = db.select().from(photos).all();
 ---
 <SiteLayout title="Photography">
   <section class="wrapper page-intro">
     <p class="eyebrow">Photography</p><h1>Small observations.</h1>
     <p>A future home for photographs, sequences, and the stories that gather around them.</p>
   </section>
-  <section class="wrapper content-grid"><div>Coming soon</div><div><p>The gallery is still being prepared. This space will eventually hold locally served photographs with thoughtful metadata and generous room to look.</p><div class="placeholder" aria-hidden="true">The first roll is developing.</div></div></section>
+  <section class="wrapper content-grid">
+    <div>{gallery.length ? `${gallery.length} photograph${gallery.length === 1 ? "" : "s"}` : "Coming soon"}</div>
+    <div>
+      {gallery.length ? (
+        <div class="photo-grid">
+          {gallery.map((photo) => <figure><img src={`/media/${photo.filename}`} alt={photo.title ?? ""} loading="lazy" /><figcaption>{photo.title ?? photo.slug}</figcaption></figure>)}
+        </div>
+      ) : (
+        <><p>The gallery is still being prepared. This space will eventually hold locally served photographs with thoughtful metadata and generous room to look.</p><div class="placeholder" aria-hidden="true">The first roll is developing.</div></>
+      )}
+    </div>
+  </section>
 </SiteLayout>
