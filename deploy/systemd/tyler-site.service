@@ -9,6 +9,8 @@ Group=tyler-site
 WorkingDirectory=/srv/tyler-site/app
 Environment=NODE_ENV=production
 Environment=SITE_DB_PATH=/srv/tyler-site/data/site.db
+Environment=HOST=127.0.0.1
+Environment=PORT=4321
 ExecStart=/usr/bin/node /srv/tyler-site/app/dist/server/entry.mjs
 Restart=on-failure
 RestartSec=5
