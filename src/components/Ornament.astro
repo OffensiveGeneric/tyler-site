@@ -1,23 +1,25 @@
 ---
+import dividerUrl from "../ornaments/divider.svg";
+import vineUrl from "../ornaments/rule-vine.svg";
+import rosetteUrl from "../ornaments/rosette.svg";
+import cornerUrl from "../ornaments/corner-leaf.svg";
+import frameCornerUrl from "../ornaments/frame-corner.svg";
+
 interface Props {
-  kind?: "divider" | "corner" | "rosette";
+  kind?: "divider" | "vine" | "rosette" | "corner" | "frame-corner";
   label?: string;
 }
 
 const { kind = "divider", label } = Astro.props;
+const images = { divider: dividerUrl, vine: vineUrl, rosette: rosetteUrl, corner: cornerUrl, "frame-corner": frameCornerUrl };
+const image = images[kind];
 ---
 
 {kind === "divider" && (
   <div class="ornament ornament-divider" aria-hidden="true">
-    <svg class="ornament-mark" viewBox="0 0 24 24"><path d="M12 1c1.2 5.2 5.2 9.2 10.4 10.4C17.2 12.6 13.2 16.6 12 21.8 10.8 16.6 6.8 12.6 1.6 11.4 6.8 10.2 10.8 6.2 12 1Z" /></svg><span class="ornament-rule"></span><span class="ornament-label">{label ?? ""}</span><span class="ornament-rule"></span><svg class="ornament-mark" viewBox="0 0 24 24"><path d="M12 1c1.2 5.2 5.2 9.2 10.4 10.4C17.2 12.6 13.2 16.6 12 21.8 10.8 16.6 6.8 12.6 1.6 11.4 6.8 10.2 10.8 6.2 12 1Z" /></svg>
+    <span class="ornament-symbol" style={`--ornament-image: url(${image})`}></span><span class="ornament-rule"></span><span class="ornament-label">{label ?? ""}</span><span class="ornament-rule"></span><span class="ornament-symbol" style={`--ornament-image: url(${image})`}></span>
   </div>
 )}
-{kind === "corner" && (
-  <svg class="ornament-corner" viewBox="0 0 100 100" aria-hidden="true">
-    <path d="M2 42V2h40M2 20c13 0 21 8 21 21M2 31c8 0 13 5 13 13M2 2c25 0 45 20 45 45" />
-    <path d="M2 2c11 8 19 18 24 31M2 2c8 11 18 19 31 24" />
-  </svg>
-)}
-{kind === "rosette" && (
-  <span class="ornament-rosette" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+{kind !== "divider" && (
+  <span class:list={["ornament", `ornament-${kind}`]} style={`--ornament-image: url(${image})`} aria-hidden="true"></span>
 )}

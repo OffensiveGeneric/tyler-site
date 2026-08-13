@@ -1,10 +1,12 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import CVContent from "../components/CVContent.astro";
+import Ornament from "../components/Ornament.astro";
 ---
 
 <SiteLayout title="CV" description="The curriculum vitae of Tyler Kleint.">
   <section class="wrapper cv-page-intro">
+    <Ornament kind="frame-corner" />
     <CVContent />
   </section>
 </SiteLayout>
