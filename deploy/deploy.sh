@@ -7,7 +7,6 @@ export SITE_DB_PATH=/srv/tyler-site/data/site.db
 install -d -m 0750 /srv/tyler-site/data
 install -d -m 0755 /srv/tyler-site/media
 chmod 0755 /srv/tyler-site
-sudo chown -R "$(id -un):$(id -gn)" "$app_dir"
 cd "$app_dir"
 git fetch origin master
 git reset --hard origin/master
