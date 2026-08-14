@@ -137,7 +137,7 @@ p { max-width: 62ch; }
   .cv-section > h2 { writing-mode: vertical-rl; text-orientation: mixed; justify-self: start; }
   .cv-section:has(.cv-entries) > .cv-scroll-ornament { position: relative; grid-column: 2; grid-row: 1; align-self: stretch; min-height: 10rem; margin: 0; background: linear-gradient(to right, transparent calc(50% - .5px), color-mix(in oklch, var(--verdigris), transparent 45%) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)); }
   .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine { display: none; }
-  .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine-vertical { position: absolute; inset: 0; display: block; width: 1rem; height: 100%; min-height: 0; margin-inline: auto; }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine-vertical { position: absolute; top: 0; bottom: 0; left: 50%; right: auto; display: block; width: 2rem; height: 100%; min-height: 0; transform: translateX(-50%); }
 }
 
 /* Contact-sheet mode: photographs get the quiet, dark room. */
