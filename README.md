@@ -18,7 +18,15 @@ npm run preview
 
 ## Blog images
 
-Prepare a source photograph without copying the large original into the repository:
+The easiest method is the interactive helper:
+
+```sh
+npm run blog:image
+```
+
+It asks for the source image, post slug, short filename, alt text, and optional caption. Paste the Markdown line it prints into the post.
+
+For a non-interactive invocation, provide the same information as flags:
 
 ```sh
 npm run blog:image -- \
@@ -29,7 +37,7 @@ npm run blog:image -- \
   --caption "An optional visible caption"
 ```
 
-The command creates responsive AVIF and WebP files under `public/images/blog/<post>/` and prints an accessible `<figure>` block to paste into the Markdown post. The source file remains untouched. Commit the generated derivatives with the post; do not commit the large camera original.
+The command creates responsive AVIF and WebP files under `public/images/blog/<post>/` and prints one ordinary Markdown image line to paste into the post. During the build, that line becomes an accessible responsive `<picture>` with an optional caption. The source file remains untouched. When publishing, commit the post plus its generated image directory; do not commit the large camera original.
 
 ## Rendering approach
 
