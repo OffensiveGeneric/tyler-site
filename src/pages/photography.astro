@@ -22,7 +22,7 @@ const sourceSet = (photo: typeof gallery[number], format: "Avif" | "Webp") => [
     <div>
       {gallery.length ? (
         <div class="photo-grid">
-          {gallery.map((photo, index) => <figure><a class="photo-link" href={`/photography/${photo.slug}`} aria-label={`Open ${photo.title ?? "photograph"}`}><picture>{sourceSet(photo, "Avif") && <source type="image/avif" srcset={sourceSet(photo, "Avif")} sizes="(max-width: 650px) 45vw, 20vw" />}{sourceSet(photo, "Webp") && <source type="image/webp" srcset={sourceSet(photo, "Webp")} sizes="(max-width: 650px) 45vw, 20vw" />}<img src={`/media/${photo.largeAvif ?? photo.filename}`} alt={photo.title ?? ""} loading="lazy" transition:name={`photo-${photo.slug}`} /></picture></a><figcaption>{String(index + 1).padStart(3, "0")} · {photo.caption ?? photo.filename}</figcaption></figure>)}
+          {gallery.map((photo) => <figure><a class="photo-link" href={`/photography/${photo.slug}`} aria-label={`Open ${photo.title ?? "photograph"}`}><picture>{sourceSet(photo, "Avif") && <source type="image/avif" srcset={sourceSet(photo, "Avif")} sizes="(max-width: 650px) 45vw, 20vw" />}{sourceSet(photo, "Webp") && <source type="image/webp" srcset={sourceSet(photo, "Webp")} sizes="(max-width: 650px) 45vw, 20vw" />}<img src={`/media/${photo.largeAvif ?? photo.filename}`} alt={photo.title ?? ""} loading="lazy" transition:name={`photo-${photo.slug}`} /></picture></a><figcaption>{photo.caption ?? photo.filename}</figcaption></figure>)}
         </div>
       ) : (
         <><p>The gallery is still being prepared. This space will eventually hold locally served photographs with thoughtful metadata and generous room to look.</p><div class="placeholder" aria-hidden="true">The first roll is developing.</div></>

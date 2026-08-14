@@ -33,6 +33,7 @@ const { title, description = "The personal site of Tyler Kleint.", mode = "jewel
       <div class="footer-line">
         <p>© {new Date().getFullYear()} Tyler Kleint</p>
         <p>{mode === "contact" ? "Contact sheet / end of roll" : "Made by hand in HTML & CSS."}</p>
+        {mode === "jewel" && <a class="site-badge" href="/about" aria-label="About this site">HAND-SET<br />HTML / CSS</a>}
       </div>
     </footer>
   </body>

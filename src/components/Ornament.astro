@@ -1,6 +1,6 @@
 ---
 interface Props {
-  kind?: "divider" | "vine" | "rosette" | "corner" | "frame-corner";
+  kind?: "divider" | "vine" | "rosette" | "corner" | "frame-corner" | "stained-glass";
   label?: string;
 }
 
@@ -22,4 +22,20 @@ const { kind = "divider", label } = Astro.props;
 )}
 {(kind === "corner" || kind === "frame-corner") && (
   <svg class:list={["ornament", `ornament-${kind}`]} viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="currentColor"><path d={kind === "corner" ? "M2 42V2h40M2 20c13 0 21 8 21 21M2 31c8 0 13 5 13 13M2 2c25 0 45 20 45 45" : "M1 44V1h43M1 25c10 0 18 8 18 18M1 34c5 0 10 5 10 10M1 1c31 0 55 24 55 55"}/><path d={kind === "corner" ? "M2 2c11 8 19 18 24 31M2 2c8 11 18 19 31 24" : "M1 1c16 10 27 25 32 43"}/></g></svg>
+)}
+{kind === "stained-glass" && (
+  <svg class="ornament ornament-stained-glass" viewBox="0 0 120 120" role="img" aria-label="Geometric stained-glass ornament">
+    <defs>
+      <mask id="stained-glass-cutout" maskUnits="userSpaceOnUse">
+        <rect width="120" height="120" fill="white" />
+        <circle cx="60" cy="60" r="18" fill="black" />
+        <path d="M60 4v34M60 82v34M4 60h34M82 60h34M20 20l24 24M76 76l24 24M100 20 76 44M44 76 20 100" stroke="black" stroke-width="7" />
+      </mask>
+    </defs>
+    <g mask="url(#stained-glass-cutout)" fill="currentColor">
+      <path d="M60 0 84 36 120 60 84 84 60 120 36 84 0 60 36 36Z" />
+      <circle cx="60" cy="60" r="52" fill="none" stroke="currentColor" stroke-width="4" />
+    </g>
+    <circle cx="60" cy="60" r="8" fill="none" stroke="currentColor" stroke-width="2" />
+  </svg>
 )}
