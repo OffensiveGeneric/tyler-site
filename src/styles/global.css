@@ -190,13 +190,13 @@ p { max-width: 62ch; }
 
 /* A scroll-linked reveal for the CV divider. It remains static where timelines are unavailable. */
 @keyframes ornament-settle {
-  from { opacity: .25; transform: scaleX(.55); }
-  to { opacity: 1; transform: scaleX(1); }
+  from { opacity: .25; transform: translateY(1rem) scaleX(.55); }
+  to { opacity: 1; transform: translateY(-1rem) scaleX(1); }
 }
 @keyframes ornament-draw { to { stroke-dashoffset: 0; } }
 @supports (animation-timeline: scroll()) {
-  .cv-scroll-ornament { animation: ornament-settle linear both; animation-duration: 1ms; animation-timeline: scroll(root block); animation-range: 0% 35%; }
-  .cv-scroll-ornament .ornament-vine path:first-child { stroke-dasharray: 320; stroke-dashoffset: 320; animation: ornament-draw linear both; animation-duration: 1ms; animation-timeline: scroll(root block); animation-range: 0% 35%; }
+  .cv-scroll-ornament { animation: ornament-settle linear both; animation-duration: 1ms; animation-timeline: scroll(); }
+  .cv-scroll-ornament .ornament-vine path:first-child { stroke-dasharray: 320; stroke-dashoffset: 320; animation: ornament-draw linear both; animation-duration: 1ms; animation-timeline: scroll(); }
 }
 
 /* Keep bespoke page systems from leaking into one another as the site grows. */
