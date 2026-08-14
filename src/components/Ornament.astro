@@ -9,9 +9,9 @@ const { kind = "divider", label } = Astro.props;
 
 {kind === "divider" && (
   <div class="ornament ornament-divider" aria-hidden="true">
-    <svg class="ornament-symbol" viewBox="0 0 24 24"><path d="m12 1 2.7 6.8 7.3.5-5.6 4.7 1.8 7.1-6.2-3.8-6.2 3.8 1.8-7.1L2 8.3l7.3-.5L12 1Z" /></svg>
+    <svg class="ornament-symbol" viewBox="0 0 24 24"><path d="M12 1 14.4 9.6 23 12l-8.6 2.4L12 23l-2.4-8.6L1 12l8.6-2.4L12 1Z" /></svg>
     <span class="ornament-rule"></span><span class="ornament-label">{label ?? ""}</span><span class="ornament-rule"></span>
-    <svg class="ornament-symbol" viewBox="0 0 24 24"><path d="m12 1 2.7 6.8 7.3.5-5.6 4.7 1.8 7.1-6.2-3.8-6.2 3.8 1.8-7.1L2 8.3l7.3-.5L12 1Z" /></svg>
+    <svg class="ornament-symbol" viewBox="0 0 24 24"><path d="M12 1 14.4 9.6 23 12l-8.6 2.4L12 23l-2.4-8.6L1 12l8.6-2.4L12 1Z" /></svg>
   </div>
 )}
 {kind === "vine" && (

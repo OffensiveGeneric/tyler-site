@@ -1,0 +1,33 @@
+---
+import { getCollection, render } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const formattedDate = post.data.pubDate.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+<SiteLayout title={post.data.title} description={post.data.description}>
+  <article class="wrapper post-page">
+    <header class="post-header">
+      <p class="eyebrow">Writing / {formattedDate}</p>
+      <h1>{post.data.title}</h1>
+      {post.data.description && <p class="post-dek">{post.data.description}</p>}
+      {post.data.tags.length > 0 && <ul class="post-tags" aria-label="Tags">{post.data.tags.map((tag) => <li>{tag}</li>)}</ul>}
+    </header>
+    <div class="post-body"><Content /></div>
+  </article>
+</SiteLayout>

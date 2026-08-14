@@ -1,8 +1,14 @@
 ---
 import SiteLayout from "../layouts/SiteLayout.astro";
 import Ornament from "../components/Ornament.astro";
+import { getCollection } from "astro:content";
+
+export const prerender = false;
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 <SiteLayout title="Writing">
   <section class="wrapper page-intro"><p class="eyebrow">Writing</p><Ornament kind="divider" label="WRITING" /><Ornament kind="vine" /><h1>Notes from the margins.</h1><p>Essays, field notes, and occasional explanations of what I’m building and why.</p></section>
-  <section class="wrapper content-grid"><div>First entry</div><div><p>The blog will begin as Markdown files in the project. That keeps publishing transparent and makes the content easy to version alongside the site.</p></div></section>
+  <section class="wrapper content-grid"><div>{posts.length ? `${posts.length} entr${posts.length === 1 ? "y" : "ies"}` : "No entries yet"}</div><div>
+    {posts.length ? <div class="post-list">{posts.map((post) => <article class="post-summary"><p class="post-date">{post.data.pubDate.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</p><h2><a href={`/blog/${post.id}`}>{post.data.title}</a></h2>{post.data.description && <p>{post.data.description}</p>}<a class="section-link" href={`/blog/${post.id}`}>Read entry</a></article>)}</div> : <p>The first entry is still being written.</p>}
+  </div></section>
 </SiteLayout>

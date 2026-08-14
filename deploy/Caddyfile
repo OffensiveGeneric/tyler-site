@@ -1,4 +1,12 @@
 :80 {
 	encode gzip
-	reverse_proxy 127.0.0.1:4321
+
+	handle_path /media/* {
+		root * /srv/tyler-site/media
+		file_server
+	}
+
+	handle {
+		reverse_proxy 127.0.0.1:4321
+	}
 }
