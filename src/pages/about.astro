@@ -21,6 +21,33 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
 
     <div class="spectral-tracery" aria-hidden="true"></div>
 
+    <figure class="about-portrait">
+      <div class="about-portrait-frame">
+        <ArchitecturalOrnament kind="panel" class="about-portrait-ornament" />
+        <picture>
+          <source
+            type="image/avif"
+            srcset="/images/about/tyler-portrait-720.avif 720w, /images/about/tyler-portrait-1400.avif 1400w"
+            sizes="(max-width: 650px) calc(100vw - 5rem), 430px"
+          />
+          <source
+            type="image/webp"
+            srcset="/images/about/tyler-portrait-720.webp 720w, /images/about/tyler-portrait-1400.webp 1400w"
+            sizes="(max-width: 650px) calc(100vw - 5rem), 430px"
+          />
+          <img
+            src="/images/about/tyler-portrait-1400.webp"
+            alt="Black-and-white portrait of Tyler wearing glasses and a plaid shirt with a flower pinned to the pocket."
+            width="1400"
+            height="2107"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+      </div>
+      <figcaption><span>PORTRAIT / TK</span><span>BLACK &amp; WHITE</span></figcaption>
+    </figure>
+
     <div class="about-compartments">
       <section class="inset-panel inset-panel-context" aria-labelledby="about-context-heading">
         <ArchitecturalOrnament kind="panel" class="panel-ornament" />
@@ -188,6 +215,59 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
     mask: url("../ornaments/lattice-tile.svg") center / 1.35rem 1.35rem repeat-x;
     filter: saturate(.85);
   }
+
+  .about-portrait {
+    width: min(27rem, calc(100% - 2rem));
+    margin: 0 auto clamp(3.5rem, 8vw, 5.5rem);
+  }
+
+  .about-portrait-frame {
+    position: relative;
+    padding: clamp(.65rem, 2cqi, 1rem);
+    border: 1px solid var(--gold-shadow);
+    outline: .35rem solid var(--oxblood);
+    outline-offset: 1px;
+    background: var(--gold);
+    box-shadow:
+      0 0 0 .45rem var(--gold-shadow),
+      0 0 0 .58rem color-mix(in oklch, var(--oxblood), black 18%);
+  }
+
+  .about-portrait-frame picture,
+  .about-portrait-frame img {
+    display: block;
+    width: 100%;
+  }
+
+  .about-portrait-frame picture { position: relative; z-index: 1; }
+  .about-portrait-frame img {
+    height: auto;
+    border: 1px solid var(--gold-shadow);
+    background: var(--shadow-field);
+  }
+
+  :global(.about-portrait-ornament) {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    color: var(--gold-highlight);
+    pointer-events: none;
+  }
+
+  :global(.about-portrait-ornament svg) { display: block; width: 100%; height: 100%; }
+
+  .about-portrait figcaption {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+    color: var(--muted);
+    font: .58rem/1.5 var(--mono);
+    letter-spacing: .11em;
+    text-transform: uppercase;
+  }
+
+  .about-portrait figcaption span:first-child { color: var(--oxblood); }
 
   .about-compartments { display: grid; gap: 1.5rem; }
   .inset-panel {
