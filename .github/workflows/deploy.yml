@@ -20,4 +20,4 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: ${{ secrets.DEPLOY_PORT || 22 }}
-          script: bash /srv/tyler-site/app/deploy/deploy.sh
+          script: sudo chown -R "$(id -un):$(id -gn)" /srv/tyler-site/app && bash /srv/tyler-site/app/deploy/deploy.sh
