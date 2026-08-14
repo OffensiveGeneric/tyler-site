@@ -133,7 +133,7 @@ p { max-width: 62ch; }
 .cv-frame-br { right: -.8rem; bottom: -.8rem; transform: scale(-1); }
 
 @container cv-sheet (min-width: 44rem) {
-  .cv-section:has(.cv-entries) { grid-template-columns: minmax(8rem, .3fr) 1rem minmax(0, 1fr); column-gap: .75rem; border-bottom-color: color-mix(in oklch, var(--gold), var(--line) 55%); }
+  .cv-section:has(.cv-entries) { grid-template-columns: 2rem 1rem minmax(0, 1fr); column-gap: .75rem; border-bottom-color: color-mix(in oklch, var(--gold), var(--line) 55%); }
   .cv-section > h2 { writing-mode: vertical-rl; text-orientation: mixed; justify-self: start; }
   .cv-section:has(.cv-entries) > .cv-scroll-ornament { position: relative; grid-column: 2; grid-row: 1; align-self: stretch; min-height: 10rem; margin: 0; background: linear-gradient(to right, transparent calc(50% - .5px), color-mix(in oklch, var(--verdigris), transparent 45%) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)); }
   .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine { display: none; }
