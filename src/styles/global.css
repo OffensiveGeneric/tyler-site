@@ -76,6 +76,7 @@ p { max-width: 62ch; }
 .placeholder { display: grid; place-items: center; min-height: 14rem; margin-top: 2rem; border: 1px solid var(--line); background: var(--paper-deep); color: var(--muted); font-family: var(--display); font-size: 1.6rem; }
 .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; }
 .photo-grid figure { margin: 0; }
+.photo-grid picture { display: block; }
 .photo-grid img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--paper-deep); }
 .photo-grid figcaption { margin-top: .5rem; color: var(--muted); font-family: var(--mono); font-size: .68rem; }
 .ornament { color: var(--gold); }
@@ -156,6 +157,7 @@ p { max-width: 62ch; }
 .photo-detail-index { margin: 0; }
 .photo-detail-layout { display: grid; grid-template-columns: minmax(0, 1fr) 12rem; gap: 3rem; align-items: start; padding-top: 2rem; }
 .photo-detail-figure { display: grid; justify-items: center; gap: .8rem; margin: 0; }
+.photo-detail-figure picture { display: contents; }
 .photo-detail-figure img { display: block; width: auto; max-width: 100%; max-height: calc(100vh - 12rem); border: 1px solid var(--contact-line); background: #20231f; padding: .5rem; object-fit: contain; }
 .photo-detail-figure figcaption { justify-self: stretch; }
 .photo-detail-meta { border-top: 1px solid var(--contact-line); padding-top: .8rem; }

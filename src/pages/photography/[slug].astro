@@ -17,6 +17,10 @@ const index = gallery.findIndex((entry) => entry.id === photo.id);
 const previous = gallery[(index - 1 + gallery.length) % gallery.length];
 const next = gallery[(index + 1) % gallery.length];
 const caption = photo.caption ?? photo.filename;
+const sourceSet = (format: "Avif" | "Webp") => [
+  photo[`medium${format}`] && `/media/${photo[`medium${format}`]} 1400w`,
+  photo[`large${format}`] && `/media/${photo[`large${format}`]} 2400w`,
+].filter(Boolean).join(", ");
 ---
 <SiteLayout title={photo.title ?? caption} mode="contact">
   <article class="wrapper photo-detail">
@@ -26,7 +30,7 @@ const caption = photo.caption ?? photo.filename;
     </header>
     <div class="photo-detail-layout">
       <figure class="photo-detail-figure">
-        <img src={`/media/${photo.filename}`} alt={photo.title ?? ""} transition:name={`photo-${photo.slug}`} />
+        <picture>{sourceSet("Avif") && <source type="image/avif" srcset={sourceSet("Avif")} />}{sourceSet("Webp") && <source type="image/webp" srcset={sourceSet("Webp")} />}<img src={`/media/${photo.largeAvif ?? photo.filename}`} alt={photo.title ?? ""} transition:name={`photo-${photo.slug}`} /></picture>
         <figcaption>{caption}</figcaption>
       </figure>
       <aside class="photo-detail-meta">
