@@ -17,59 +17,11 @@ const gallery = db.select().from(photos).orderBy(asc(photos.createdAt), asc(phot
     <div>
       {gallery.length ? (
         <div class="photo-grid">
-          {gallery.map((photo, index) => <figure><a class="photo-link" href={`/media/${photo.filename}`} data-lightbox-index={index} data-lightbox-caption={photo.caption ?? photo.filename} aria-label={`Open ${photo.title ?? "photograph"}`}><img src={`/media/${photo.filename}`} alt={photo.title ?? ""} loading="lazy" /></a><figcaption>{String(index + 1).padStart(3, "0")} · {photo.caption ?? photo.filename}</figcaption></figure>)}
+          {gallery.map((photo, index) => <figure><a class="photo-link" href={`/photography/${photo.slug}`} aria-label={`Open ${photo.title ?? "photograph"}`}><img src={`/media/${photo.filename}`} alt={photo.title ?? ""} loading="lazy" transition:name={`photo-${photo.slug}`} /></a><figcaption>{String(index + 1).padStart(3, "0")} · {photo.caption ?? photo.filename}</figcaption></figure>)}
         </div>
       ) : (
         <><p>The gallery is still being prepared. This space will eventually hold locally served photographs with thoughtful metadata and generous room to look.</p><div class="placeholder" aria-hidden="true">The first roll is developing.</div></>
       )}
     </div>
   </section>
-{gallery.length > 0 && <dialog class="lightbox" aria-label="Photograph viewer">
-  <div class="lightbox-inner">
-    <button class="lightbox-close" type="button" aria-label="Close photograph viewer">×</button>
-    <button class="lightbox-prev" type="button" aria-label="Previous photograph">←</button>
-    <figure class="lightbox-figure">
-      <img class="lightbox-image" alt="" />
-      <figcaption class="lightbox-caption"></figcaption>
-    </figure>
-    <button class="lightbox-next" type="button" aria-label="Next photograph">→</button>
-  </div>
-</dialog>}
-
-<script>
-  const dialog = document.querySelector<HTMLDialogElement>(".lightbox");
-  const links = [...document.querySelectorAll<HTMLAnchorElement>("[data-lightbox-index]")];
-  const image = dialog?.querySelector<HTMLImageElement>(".lightbox-image");
-  const caption = dialog?.querySelector<HTMLElement>(".lightbox-caption");
-  const close = dialog?.querySelector<HTMLButtonElement>(".lightbox-close");
-  const previous = dialog?.querySelector<HTMLButtonElement>(".lightbox-prev");
-  const next = dialog?.querySelector<HTMLButtonElement>(".lightbox-next");
-  let currentIndex = 0;
-
-  function showPhoto(index: number) {
-    if (!dialog || !image || !caption || !links.length) return;
-    currentIndex = (index + links.length) % links.length;
-    const link = links[currentIndex];
-    const thumbnail = link.querySelector<HTMLImageElement>("img");
-    image.src = link.href;
-    image.alt = thumbnail?.alt ?? "";
-    caption.textContent = `${String(currentIndex + 1).padStart(3, "0")} · ${link.dataset.lightboxCaption || "Photograph"}`;
-  }
-
-  links.forEach((link, index) => link.addEventListener("click", (event) => {
-    event.preventDefault();
-    showPhoto(index);
-    dialog?.showModal();
-  }));
-  close?.addEventListener("click", () => dialog?.close());
-  previous?.addEventListener("click", () => showPhoto(currentIndex - 1));
-  next?.addEventListener("click", () => showPhoto(currentIndex + 1));
-  dialog?.addEventListener("click", (event) => {
-    if (event.target === dialog) dialog.close();
-  });
-  dialog?.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft") showPhoto(currentIndex - 1);
-    if (event.key === "ArrowRight") showPhoto(currentIndex + 1);
-  });
-</script>
 </SiteLayout>

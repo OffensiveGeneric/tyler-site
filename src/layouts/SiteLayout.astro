@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import SiteHeader from "../components/SiteHeader.astro";
 import Ornament from "../components/Ornament.astro";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -19,6 +20,7 @@ const { title, description = "The personal site of Tyler Kleint.", mode = "jewel
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <ClientRouter />
     <title>{title} — Tyler Kleint</title>
   </head>
   <body class:list={{ "contact-mode": mode === "contact", "jewel-mode": mode === "jewel" }}>

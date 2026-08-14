@@ -1,0 +1,42 @@
+---
+import { asc } from "drizzle-orm";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import { db } from "../../db/client";
+import { photos } from "../../db/schema";
+
+export const prerender = false;
+
+const gallery = db.select().from(photos).orderBy(asc(photos.createdAt), asc(photos.id)).all();
+const photo = gallery.find((entry) => entry.slug === Astro.params.slug);
+
+if (!photo) {
+  return Astro.redirect("/photography");
+}
+
+const index = gallery.findIndex((entry) => entry.id === photo.id);
+const previous = gallery[(index - 1 + gallery.length) % gallery.length];
+const next = gallery[(index + 1) % gallery.length];
+const caption = photo.caption ?? photo.filename;
+---
+<SiteLayout title={photo.title ?? caption} mode="contact">
+  <article class="wrapper photo-detail">
+    <header class="photo-detail-header">
+      <a class="photo-back" href="/photography">← Photography</a>
+      <p class="photo-detail-index">{String(index + 1).padStart(3, "0")} / {String(gallery.length).padStart(3, "0")}</p>
+    </header>
+    <div class="photo-detail-layout">
+      <figure class="photo-detail-figure">
+        <img src={`/media/${photo.filename}`} alt={photo.title ?? ""} transition:name={`photo-${photo.slug}`} />
+        <figcaption>{caption}</figcaption>
+      </figure>
+      <aside class="photo-detail-meta">
+        <p>{photo.title ?? "Untitled photograph"}</p>
+        {photo.dateTaken && <p>{photo.dateTaken}</p>}
+        <nav aria-label="Photograph navigation">
+          <a href={`/photography/${previous.slug}`}>← Previous</a>
+          <a href={`/photography/${next.slug}`}>Next →</a>
+        </nav>
+      </aside>
+    </div>
+  </article>
+</SiteLayout>
