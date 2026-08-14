@@ -133,11 +133,11 @@ p { max-width: 62ch; }
 .cv-frame-br { right: -.8rem; bottom: -.8rem; transform: scale(-1); }
 
 @container cv-sheet (min-width: 44rem) {
-  .cv-section:has(.cv-entries) { grid-template-columns: minmax(8rem, .3fr) 4rem minmax(0, 1fr); border-bottom-color: color-mix(in oklch, var(--gold), var(--line) 55%); }
+  .cv-section:has(.cv-entries) { grid-template-columns: minmax(8rem, .3fr) 2rem minmax(0, 1fr); border-bottom-color: color-mix(in oklch, var(--gold), var(--line) 55%); }
   .cv-section > h2 { writing-mode: vertical-rl; text-orientation: mixed; justify-self: start; }
   .cv-section:has(.cv-entries) > .cv-scroll-ornament { position: relative; grid-column: 2; grid-row: 1; align-self: stretch; min-height: 10rem; margin: 0; background: linear-gradient(to right, transparent calc(50% - .5px), color-mix(in oklch, var(--verdigris), transparent 45%) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)); }
   .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine { display: none; }
-  .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine-vertical { display: block; width: 4rem; height: 10rem; }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine-vertical { display: block; width: 2rem; height: 100%; min-height: 10rem; }
 }
 
 /* Contact-sheet mode: photographs get the quiet, dark room. */
@@ -194,7 +194,10 @@ p { max-width: 62ch; }
 /* A scroll-linked reveal for the CV divider. It remains static where timelines are unavailable. */
 @keyframes vine-grow { from { clip-path: inset(0 0 100%); } to { clip-path: inset(0); } }
 @supports (animation-timeline: scroll()) {
-  .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine-vertical { animation-name: vine-grow; animation-timing-function: linear; animation-fill-mode: both; animation-duration: 1ms; animation-timeline: scroll(); }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .vine-left,
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .vine-right { animation-name: vine-grow; animation-timing-function: linear; animation-fill-mode: both; animation-duration: 1ms; animation-timeline: scroll(); }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .vine-left { animation-range: 0% 58%; }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .vine-right { animation-range: 18% 76%; }
 }
 
 /* Keep bespoke page systems from leaking into one another as the site grows. */
