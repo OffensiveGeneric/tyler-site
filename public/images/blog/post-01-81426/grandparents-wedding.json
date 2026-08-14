@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "variants": [
+    {
+      "width": 720,
+      "height": 905
+    },
+    {
+      "width": 1400,
+      "height": 1759
+    },
+    {
+      "width": 1582,
+      "height": 1988
+    }
+  ],
+  "fallbackWidth": 1400,
+  "sizes": "(max-width: 650px) calc(100vw - 2rem), 720px"
+}
