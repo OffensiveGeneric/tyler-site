@@ -16,6 +16,21 @@ npm run build
 npm run preview
 ```
 
+## Blog images
+
+Prepare a source photograph without copying the large original into the repository:
+
+```sh
+npm run blog:image -- \
+  --input "/mnt/c/Users/tyler/Downloads/wedding-album.jpg" \
+  --post post-01-81426 \
+  --name wedding-album \
+  --alt "A descriptive account of the photograph" \
+  --caption "An optional visible caption"
+```
+
+The command creates responsive AVIF and WebP files under `public/images/blog/<post>/` and prints an accessible `<figure>` block to paste into the Markdown post. The source file remains untouched. Commit the generated derivatives with the post; do not commit the large camera original.
+
 ## Rendering approach
 
 The normal pages are Astro components. They render to HTML and CSS at build time, so they do not require client-side JavaScript. React is installed for future interactive components, but a React component only becomes a browser-side island when we explicitly add a hydration directive such as `client:load`.
