@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 390" preserveAspectRatio="xMidYMid meet">
+  <g fill="none" stroke="currentColor" vector-effect="non-scaling-stroke">
+    <path stroke-width="3" d="M54 378V198C54 17 666 17 666 198v180" />
+    <path stroke-width="1" d="M76 378V201C76 48 644 48 644 201v177" />
+    <path stroke-width="2" d="M96 378V205C96 77 624 77 624 205v173" />
+    <path stroke-width="1" d="M116 378V208c0-102 488-102 488 0v170" />
+    <path stroke-width="1" stroke-dasharray="3 7" d="M86 194C112 34 608 34 634 194" />
+    <path stroke-width="1" d="M54 349h62M604 349h62M54 367h62M604 367h62" />
+    <g fill="currentColor" stroke="none">
+      <circle cx="126" cy="118" r="4" /><circle cx="206" cy="65" r="4" />
+      <circle cx="294" cy="40" r="4" /><circle cx="360" cy="34" r="5" />
+      <circle cx="426" cy="40" r="4" /><circle cx="514" cy="65" r="4" />
+      <circle cx="594" cy="118" r="4" />
+    </g>
+  </g>
+</svg>

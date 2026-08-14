@@ -1,0 +1,15 @@
+---
+import archFrame from "../ornaments/arch-frame.svg?raw";
+import panelFrame from "../ornaments/panel-frame.svg?raw";
+import rosette from "../ornaments/rosette.svg?raw";
+
+interface Props {
+  kind: "arch" | "panel" | "rosette";
+  class?: string;
+}
+
+const { kind, class: className } = Astro.props;
+const ornaments = { arch: archFrame, panel: panelFrame, rosette };
+---
+
+<div class:list={["architectural-ornament", `architectural-ornament-${kind}`, className]} aria-hidden="true" set:html={ornaments[kind]} />

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" preserveAspectRatio="none">
+  <g fill="none" stroke="currentColor" vector-effect="non-scaling-stroke">
+    <rect x="2" y="2" width="316" height="176" stroke-width="2" />
+    <rect x="9" y="9" width="302" height="162" stroke-width="1" />
+    <path d="M9 28h18V9M293 9v19h18M9 152h18v19M293 171v-19h18" stroke-width="2" />
+    <path d="M27 16h266M27 164h266M16 28v124M304 28v124" stroke-dasharray="2 5" />
+    <g fill="currentColor" stroke="none">
+      <rect x="13" y="13" width="7" height="7" transform="rotate(45 16.5 16.5)" />
+      <rect x="300" y="13" width="7" height="7" transform="rotate(45 303.5 16.5)" />
+      <rect x="13" y="160" width="7" height="7" transform="rotate(45 16.5 163.5)" />
+      <rect x="300" y="160" width="7" height="7" transform="rotate(45 303.5 163.5)" />
+    </g>
+  </g>
+</svg>

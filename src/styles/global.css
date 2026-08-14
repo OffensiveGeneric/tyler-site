@@ -9,11 +9,17 @@
   --oxblood: oklch(38% 0.12 28);
   --ultramarine: oklch(38% 0.12 265);
   --verdigris: oklch(43% 0.08 165);
+  --cinnabar: oklch(52% 0.16 32);
+  --lapis: oklch(42% 0.15 265);
+  --emerald: oklch(46% 0.1 158);
+  --violet: oklch(43% 0.14 315);
   --gold: oklch(66% 0.13 78);
   --gold-shadow: color-mix(in oklch, var(--gold), black 32%);
   --gold-highlight: color-mix(in oklch, var(--gold), white 28%);
   --paper-shadow: color-mix(in oklch, var(--paper), black 12%);
   --jewel-wash: color-mix(in oklch, var(--oxblood), var(--paper) 92%);
+  --shadow-field: color-mix(in oklch, var(--ink), var(--oxblood) 12%);
+  --warm-stone: color-mix(in oklch, var(--paper), var(--gold) 8%);
   --display: "Cormorant Garamond", Georgia, serif;
   --body: "Newsreader", Georgia, serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
