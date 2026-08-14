@@ -1,8 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-  <g fill="none" stroke="currentColor" stroke-width="1">
-    <path d="M24 0 48 24 24 48 0 24Z" />
-    <path d="M12 0c0 12-12 12-12 24s12 12 12 24M36 0c0 12 12 12 12 24S36 36 36 48" />
-    <circle cx="24" cy="24" r="7" />
-    <path d="M24 17v14M17 24h14M19 19l10 10M29 19 19 29" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56">
+  <g fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke">
+    <path d="M28 0C28 10 18 10 18 18S10 28 0 28M56 28C46 28 46 18 38 18S28 10 28 0M28 56c0-10-10-10-10-18S10 28 0 28M56 28c-10 0-10 10-18 10s-10 8-10 18" />
+    <path d="M0 14c8 0 14-6 14-14M42 0c0 8 6 14 14 14M56 42c-8 0-14 6-14 14M14 56c0-8-6-14-14-14" />
+    <path stroke-width="1.5" d="m28 16 8.5 3.5L40 28l-3.5 8.5L28 40l-8.5-3.5L16 28l3.5-8.5Z" />
+    <circle cx="28" cy="28" r="7" />
+    <path d="M28 21v14M21 28h14M23 23l10 10M33 23 23 33" />
+    <circle cx="0" cy="0" r="3" /><circle cx="56" cy="0" r="3" />
+    <circle cx="0" cy="56" r="3" /><circle cx="56" cy="56" r="3" />
   </g>
 </svg>

@@ -10,6 +10,7 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
     <header class="about-masthead">
       <ArchitecturalOrnament kind="arch" class="about-arch" />
       <p class="about-folio">FOLIO / 04</p>
+      <ArchitecturalOrnament kind="rosette" class="about-rose-window" />
       <p class="about-kicker">A little context</p>
       <h1>About</h1>
     </header>
@@ -105,6 +106,21 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
 
   :global(.about-arch svg) { width: 100%; height: 100%; overflow: visible; }
   :global(.about-arch path) { stroke-dasharray: 1200; animation: arch-reveal 1.4s cubic-bezier(.22, .61, .36, 1) both; }
+  :global(.about-arch .arch-pipes) { opacity: .13; }
+
+  :global(.about-rose-window) {
+    z-index: 1;
+    width: clamp(5.5rem, 12cqi, 8rem);
+    height: clamp(5.5rem, 12cqi, 8rem);
+    margin-bottom: 1.1rem;
+    color: var(--gold-shadow);
+    --rosette-glass: color-mix(in oklch, var(--gold-highlight), transparent 42%);
+    --rosette-glass-alt: color-mix(in oklch, var(--lapis), transparent 18%);
+    --rosette-center: color-mix(in oklch, var(--cinnabar), transparent 68%);
+    filter: drop-shadow(0 0 .45rem color-mix(in oklch, var(--gold), transparent 60%));
+  }
+
+  :global(.about-rose-window svg) { display: block; width: 100%; height: 100%; }
 
   .about-folio,
   .about-kicker,
@@ -145,6 +161,7 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
   .rosette-passage { display: grid; grid-template-columns: 1fr auto 1fr; gap: .9rem; align-items: center; width: min(28rem, 80%); margin: .5rem auto; color: var(--gold-shadow); }
   .rosette-passage > span { height: 1px; background: currentColor; }
   :global(.about-rosette) { width: 3rem; height: 3rem; }
+  :global(.about-rosette) { --rosette-glass: color-mix(in oklch, var(--gold), transparent 72%); }
   :global(.about-rosette svg), :global(.colophon-rosette svg) { display: block; width: 100%; height: 100%; }
 
   .about-colophon { display: grid; justify-items: center; gap: .35rem; padding: 4rem 1rem 1rem; color: var(--muted); font-size: .58rem; text-align: center; }
@@ -171,5 +188,6 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
 
   @media (prefers-reduced-motion: reduce) {
     :global(.about-arch path) { animation: none; stroke-dasharray: none; }
+    :global(.about-rose-window) { filter: none; }
   }
 </style>

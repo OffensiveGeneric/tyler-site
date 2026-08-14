@@ -6,6 +6,9 @@
     <path stroke-width="1" d="M116 378V208c0-102 488-102 488 0v170" />
     <path stroke-width="1" stroke-dasharray="3 7" d="M86 194C112 34 608 34 634 194" />
     <path stroke-width="1" d="M54 349h62M604 349h62M54 367h62M604 367h62" />
+    <g class="arch-pipes" stroke-width="3">
+      <path d="M250 304V170M272 304V137M294 304V112M316 304V92M338 304V78M360 304V70M382 304V78M404 304V92M426 304V112M448 304V137M470 304V170" />
+    </g>
     <g fill="currentColor" stroke="none">
       <circle cx="126" cy="118" r="4" /><circle cx="206" cy="65" r="4" />
       <circle cx="294" cy="40" r="4" /><circle cx="360" cy="34" r="5" />
