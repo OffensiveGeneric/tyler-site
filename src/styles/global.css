@@ -136,8 +136,8 @@ p { max-width: 62ch; }
   .cv-section:has(.cv-entries) { grid-template-columns: minmax(8rem, .3fr) 1px minmax(0, 1fr); border-bottom-color: color-mix(in oklch, var(--gold), var(--line) 55%); }
   .cv-section > h2 { writing-mode: vertical-rl; text-orientation: mixed; justify-self: start; }
   .cv-section:has(.cv-entries) > .cv-scroll-ornament { position: relative; grid-column: 2; grid-row: 1; align-self: stretch; min-height: 10rem; margin: 0; background: color-mix(in oklch, var(--verdigris), transparent 45%); }
-  .cv-section:has(.cv-entries) > .cv-scroll-ornament::after { position: absolute; top: 0; left: 50%; width: 5px; height: 1.5rem; background: var(--gold); box-shadow: 0 0 .45rem var(--gold-shadow); content: ""; transform: translateX(-50%); }
-  .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine { width: 1.5rem; height: 10rem; transform: rotate(90deg); }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine { display: none; }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine-vertical { display: block; width: 2rem; height: 10rem; }
 }
 
 /* Contact-sheet mode: photographs get the quiet, dark room. */
@@ -192,16 +192,9 @@ p { max-width: 62ch; }
 ::view-transition-group(*) { animation-timing-function: cubic-bezier(.22, .61, .36, 1); }
 
 /* A scroll-linked reveal for the CV divider. It remains static where timelines are unavailable. */
-@keyframes ornament-settle {
-  from { opacity: .25; transform: translateY(1rem) scaleY(.55); }
-  to { opacity: 1; transform: translateY(-1rem) scaleY(1); }
-}
-@keyframes ornament-draw { to { stroke-dashoffset: 0; } }
-@keyframes ornament-marker { to { transform: translate(-50%, 8.5rem); } }
+@keyframes vine-grow { from { clip-path: inset(0 0 100%); } to { clip-path: inset(0); } }
 @supports (animation-timeline: scroll()) {
-  .cv-scroll-ornament { animation-name: ornament-settle; animation-timing-function: linear; animation-fill-mode: both; animation-duration: 1ms; animation-timeline: scroll(); }
-  .cv-scroll-ornament .ornament-vine path:first-child { stroke-dasharray: 320; stroke-dashoffset: 320; animation-name: ornament-draw; animation-timing-function: linear; animation-fill-mode: both; animation-duration: 1ms; animation-timeline: scroll(); }
-  .cv-section:has(.cv-entries) > .cv-scroll-ornament::after { animation-name: ornament-marker; animation-timing-function: linear; animation-fill-mode: both; animation-duration: 1ms; animation-timeline: scroll(); }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine-vertical { animation-name: vine-grow; animation-timing-function: linear; animation-fill-mode: both; animation-duration: 1ms; animation-timeline: scroll(); }
 }
 
 /* Keep bespoke page systems from leaking into one another as the site grows. */
@@ -232,9 +225,9 @@ p { max-width: 62ch; }
   .cv-section, .cv-entries article { grid-template-columns: 1fr; gap: .7rem; }
   .cv-entries { grid-template-columns: 1fr; }
   .cv-section > h2 { writing-mode: horizontal-tb; }
-  .cv-section:has(.cv-entries) > .cv-scroll-ornament { grid-column: 1; grid-row: auto; min-height: 0; margin: 1.2rem 0; background: none; }
-  .cv-section:has(.cv-entries) > .cv-scroll-ornament::after { display: none; }
-  .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine { width: 10rem; height: 1.5rem; transform: none; }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament { position: static; grid-column: 1; grid-row: auto; min-height: 0; margin: 1.2rem 0; background: none; }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine-vertical { display: none; }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine { display: block; width: 10rem; height: 1.5rem; }
   .ornament-stained-glass { top: 1rem; right: 0; width: 5rem; }
   .site-badge { align-self: flex-start; }
 }
