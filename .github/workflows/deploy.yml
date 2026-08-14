@@ -20,4 +20,4 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_KEY }}
           port: ${{ secrets.DEPLOY_PORT || 22 }}
-          script: id -un; id -gn; stat -c '%U:%G %a %n' /srv/tyler-site/app /srv/tyler-site/app/deploy/deploy.sh; exit 1
+          script: id -u; id -g; stat -c '%u:%g %a %n' /srv/tyler-site/app; exit 1
