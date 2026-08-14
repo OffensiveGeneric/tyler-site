@@ -17,20 +17,41 @@ const index = gallery.findIndex((entry) => entry.id === photo.id);
 const previous = gallery[(index - 1 + gallery.length) % gallery.length];
 const next = gallery[(index + 1) % gallery.length];
 const caption = photo.caption ?? photo.filename;
-const sourceSet = (format: "Avif" | "Webp") => [
-  photo[`medium${format}`] && `/media/${photo[`medium${format}`]} 1400w`,
-  photo[`large${format}`] && `/media/${photo[`large${format}`]} 2400w`,
-].filter(Boolean).join(", ");
+const swapsAxes = [5, 6, 7, 8].includes(Number(photo.orientation));
+const displayWidth = swapsAxes ? photo.height : photo.width;
+const displayHeight = swapsAxes ? photo.width : photo.height;
+const sourceSet = (format: "Avif" | "Webp") => {
+  const candidates = [
+    [photo[`medium${format}`], Math.min(displayWidth ?? 1400, 1400)],
+    [photo[`large${format}`], Math.min(displayWidth ?? 2400, 2400)],
+  ] as const;
+  const uniqueCandidates = new Map<number, string>();
+  for (const [path, candidateWidth] of candidates) if (path && !uniqueCandidates.has(candidateWidth)) uniqueCandidates.set(candidateWidth, path);
+  return [...uniqueCandidates.entries()]
+    .map(([candidateWidth, path]) => `/media/${path} ${candidateWidth}w`).join(", ");
+};
+const detailSizes = "(max-width: 650px) calc(100vw - 2rem), (max-width: 1420px) calc(100vw - 31rem), 920px";
+const previousHref = `/photography/${previous.slug}`;
+const nextHref = `/photography/${next.slug}`;
 ---
 <SiteLayout title={photo.title ?? caption} mode="contact">
-  <article class="wrapper photo-detail">
+  <Fragment slot="head">
+    <link rel="preload" as="image" type="image/avif" href={`/media/${photo.mediumAvif ?? photo.largeAvif ?? photo.filename}`} imagesrcset={sourceSet("Avif")} imagesizes={detailSizes} fetchpriority="high" />
+    <link rel="prev" href={previousHref} />
+    <link rel="next" href={nextHref} />
+  </Fragment>
+  <article class="wrapper photo-detail" data-previous-href={previousHref} data-next-href={nextHref}>
     <header class="photo-detail-header">
       <a class="photo-back" href="/photography">← Photography</a>
+      <nav class="photo-detail-arrows" aria-label="Photograph navigation">
+        <a href={previousHref} rel="prev" aria-label="Previous photograph" title="Previous photograph (Left arrow)">←</a>
+        <a href={nextHref} rel="next" aria-label="Next photograph" title="Next photograph (Right arrow)">→</a>
+      </nav>
       <p class="photo-detail-index">{String(index + 1).padStart(3, "0")} / {String(gallery.length).padStart(3, "0")}</p>
     </header>
     <div class="photo-detail-layout">
       <figure class="photo-detail-figure">
-        <picture>{sourceSet("Avif") && <source type="image/avif" srcset={sourceSet("Avif")} />}{sourceSet("Webp") && <source type="image/webp" srcset={sourceSet("Webp")} />}<img src={`/media/${photo.largeAvif ?? photo.filename}`} alt={photo.title ?? ""} /></picture>
+        <picture>{sourceSet("Avif") && <source type="image/avif" srcset={sourceSet("Avif")} sizes={detailSizes} />}{sourceSet("Webp") && <source type="image/webp" srcset={sourceSet("Webp")} sizes={detailSizes} />}<img src={`/media/${photo.mediumWebp ?? photo.largeWebp ?? photo.filename}`} alt={photo.title ?? ""} width={displayWidth} height={displayHeight} decoding="async" fetchpriority="high" style={`view-transition-name: photo-${photo.id}`} /></picture>
         <figcaption>{caption}</figcaption>
       </figure>
       <button class="photo-meta-trigger" type="button" popovertarget="photo-meta" aria-controls="photo-meta">Metadata</button>
@@ -38,10 +59,25 @@ const sourceSet = (format: "Avif" | "Webp") => [
         <p>{photo.title ?? "Untitled photograph"}</p>
         {photo.dateTaken && <p>{photo.dateTaken}</p>}
         <nav aria-label="Photograph navigation">
-          <a href={`/photography/${previous.slug}`}>← Previous</a>
-          <a href={`/photography/${next.slug}`}>Next →</a>
+          <a href={previousHref} rel="prev">← Previous</a>
+          <a href={nextHref} rel="next">Next →</a>
         </nav>
       </aside>
     </div>
   </article>
+  <script is:inline>
+    (() => {
+      const detail = document.querySelector(".photo-detail");
+      if (!(detail instanceof HTMLElement)) return;
+      document.addEventListener("keydown", (event) => {
+        if (event.defaultPrevented || event.repeat || event.altKey || event.ctrlKey || event.metaKey) return;
+        const target = event.target;
+        if (target instanceof HTMLElement && (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName))) return;
+        const href = event.key === "ArrowLeft" ? detail.dataset.previousHref : event.key === "ArrowRight" ? detail.dataset.nextHref : null;
+        if (!href) return;
+        event.preventDefault();
+        window.location.assign(href);
+      });
+    })();
+  </script>
 </SiteLayout>

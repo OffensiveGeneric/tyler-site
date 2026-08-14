@@ -11,6 +11,9 @@ interface Props {
 }
 
 const { title, description = "The personal site of Tyler Kleint.", mode = "jewel" } = Astro.props;
+const fontStylesheet = mode === "contact"
+  ? "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+  : "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap";
 ---
 
 <!doctype html>
@@ -20,7 +23,11 @@ const { title, description = "The personal site of Tyler Kleint.", mode = "jewel
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <ClientRouter />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={fontStylesheet} />
+    {mode === "jewel" && <ClientRouter />}
+    <slot name="head" />
     <title>{title} — Tyler Kleint</title>
   </head>
   <body class:list={{ "contact-mode": mode === "contact", "jewel-mode": mode === "jewel" }}>

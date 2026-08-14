@@ -6,13 +6,26 @@ import { asc } from "drizzle-orm";
 
 export const prerender = false;
 const gallery = db.select().from(photos).orderBy(asc(photos.createdAt), asc(photos.id)).all();
-const sourceSet = (photo: typeof gallery[number], format: "Avif" | "Webp") => [
-  photo[`thumb${format}`] && `/media/${photo[`thumb${format}`]} 480w`,
-  photo[`medium${format}`] && `/media/${photo[`medium${format}`]} 1400w`,
-  photo[`large${format}`] && `/media/${photo[`large${format}`]} 2400w`,
-].filter(Boolean).join(", ");
+const displayDimensions = (photo: typeof gallery[number]) => {
+  const swapsAxes = [5, 6, 7, 8].includes(Number(photo.orientation));
+  return { width: swapsAxes ? photo.height : photo.width, height: swapsAxes ? photo.width : photo.height };
+};
+const sourceSet = (photo: typeof gallery[number], format: "Avif" | "Webp") => {
+  const { width } = displayDimensions(photo);
+  const candidates = [
+    [photo[`thumb${format}`], Math.min(width ?? 480, 480)],
+    [photo[`medium${format}`], Math.min(width ?? 1400, 1400)],
+  ] as const;
+  const uniqueCandidates = new Map<number, string>();
+  for (const [path, candidateWidth] of candidates) if (path && !uniqueCandidates.has(candidateWidth)) uniqueCandidates.set(candidateWidth, path);
+  return [...uniqueCandidates.entries()]
+    .map(([candidateWidth, path]) => `/media/${path} ${candidateWidth}w`).join(", ");
+};
+const thumbnailSizes = "(max-width: 650px) 45vw, (max-width: 1420px) 20vw, 236px";
+const firstPhoto = gallery[0];
 ---
 <SiteLayout title="Photography" mode="contact">
+  {firstPhoto && <Fragment slot="head"><link rel="preload" as="image" type="image/avif" href={`/media/${firstPhoto.thumbAvif}`} imagesrcset={sourceSet(firstPhoto, "Avif")} imagesizes={thumbnailSizes} fetchpriority="high" /></Fragment>}
   <section class="wrapper page-intro">
     <p class="eyebrow">Photography</p><h1>Film scans.</h1>
     <p>Around 2021 I was given an enlarger by my dad's old friend Ed. I spent the next several years in the darkroom, and in the streets with my skateboard and camera nearly always at my side.</p>
@@ -22,7 +35,10 @@ const sourceSet = (photo: typeof gallery[number], format: "Avif" | "Webp") => [
     <div>
       {gallery.length ? (
         <div class="photo-grid">
-          {gallery.map((photo) => <figure><a class="photo-link" href={`/photography/${photo.slug}`} aria-label={`Open ${photo.title ?? "photograph"}`}><picture>{sourceSet(photo, "Avif") && <source type="image/avif" srcset={sourceSet(photo, "Avif")} sizes="(max-width: 650px) 45vw, 20vw" />}{sourceSet(photo, "Webp") && <source type="image/webp" srcset={sourceSet(photo, "Webp")} sizes="(max-width: 650px) 45vw, 20vw" />}<img src={`/media/${photo.largeAvif ?? photo.filename}`} alt={photo.title ?? ""} loading="lazy" /></picture></a><figcaption>{photo.caption ?? photo.filename}</figcaption></figure>)}
+          {gallery.map((photo, photoIndex) => {
+            const dimensions = displayDimensions(photo);
+            return <figure><a class="photo-link" href={`/photography/${photo.slug}`} aria-label={`Open ${photo.title ?? "photograph"}`}><picture>{sourceSet(photo, "Avif") && <source type="image/avif" srcset={sourceSet(photo, "Avif")} sizes={thumbnailSizes} />}{sourceSet(photo, "Webp") && <source type="image/webp" srcset={sourceSet(photo, "Webp")} sizes={thumbnailSizes} />}<img src={`/media/${photo.thumbWebp ?? photo.thumbAvif ?? photo.filename}`} alt={photo.title ?? ""} width={dimensions.width} height={dimensions.height} loading={photoIndex === 0 ? "eager" : "lazy"} decoding="async" fetchpriority={photoIndex === 0 ? "high" : "low"} style={`view-transition-name: photo-${photo.id}`} /></picture></a><figcaption>{photo.caption ?? photo.filename}</figcaption></figure>;
+          })}
         </div>
       ) : (
         <><p>The gallery is still being prepared. This space will eventually hold locally served photographs with thoughtful metadata and generous room to look.</p><div class="placeholder" aria-hidden="true">The first roll is developing.</div></>

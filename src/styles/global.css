@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap");
-
 :root {
   --ink: oklch(22% 0.035 155);
   --muted: oklch(47% 0.035 150);
@@ -176,6 +174,9 @@ p { max-width: 62ch; }
 .photo-back, .photo-detail-index, .photo-detail-meta, .photo-detail-figure figcaption { color: var(--contact-muted); font: .68rem/1.5 var(--mono); }
 .photo-back:hover, .photo-detail-meta a:hover { color: var(--contact-ink); }
 .photo-detail-index { margin: 0; }
+.photo-detail-arrows { display: flex; align-items: center; gap: .45rem; margin-left: auto; }
+.photo-detail-arrows a { display: grid; width: 2rem; height: 2rem; place-items: center; border: 1px solid var(--contact-line); color: var(--contact-muted); font: .85rem var(--mono); }
+.photo-detail-arrows a:hover, .photo-detail-arrows a:focus-visible { border-color: var(--contact-ink); color: var(--contact-ink); }
 .photo-detail-layout { display: grid; grid-template-columns: minmax(0, 1fr) 12rem; gap: 3rem; align-items: start; padding-top: 2rem; }
 .photo-detail-layout { container: photo-detail / inline-size; }
 .photo-detail-figure { display: grid; justify-items: center; gap: .8rem; margin: 0; }
@@ -196,6 +197,7 @@ p { max-width: 62ch; }
 .site-badge:hover { background: var(--oxblood); color: var(--paper); }
 ::view-transition-old(*), ::view-transition-new(*) { animation-duration: 420ms; }
 ::view-transition-group(*) { animation-timing-function: cubic-bezier(.22, .61, .36, 1); }
+@view-transition { navigation: auto; }
 
 /* A scroll-linked reveal for the CV divider. It remains static where timelines are unavailable. */
 @keyframes vine-grow { from { clip-path: inset(0 0 100%); } to { clip-path: inset(0); } }
@@ -249,4 +251,5 @@ p { max-width: 62ch; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
   .cv-scroll-ornament .ornament-vine path:first-child { stroke-dashoffset: 0; }
+  ::view-transition-old(*), ::view-transition-new(*) { animation-duration: .01ms !important; }
 }
