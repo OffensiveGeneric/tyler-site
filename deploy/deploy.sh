@@ -13,6 +13,9 @@ git reset --hard origin/master
 npm ci
 npm run db:migrate
 npm run build
+sudo caddy validate --config "$app_dir/deploy/Caddyfile" --adapter caddyfile
+sudo install -m 0644 "$app_dir/deploy/Caddyfile" /etc/caddy/Caddyfile
+sudo systemctl reload caddy.service
 sudo systemctl restart tyler-site.service
 
 for attempt in $(seq 1 20); do

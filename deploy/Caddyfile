@@ -1,4 +1,4 @@
-:80 {
+ooknulsus.com {
 	encode gzip
 
 	handle_path /media/* {
