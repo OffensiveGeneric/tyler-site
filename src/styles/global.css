@@ -100,6 +100,7 @@ p { max-width: 62ch; }
 .cv-page-intro > .ornament-frame-corner { position: absolute; top: 1.2rem; left: -1.2rem; color: var(--gold); }
 .cv-page-intro > .ornament-rosette { position: absolute; right: 0; bottom: 1rem; color: var(--ultramarine); opacity: .7; }
 .page-intro > .ornament-vine { margin: 0 0 1rem; color: var(--verdigris); }
+.cv-scroll-ornament { display: grid; place-items: center; margin: 1.2rem 0; color: var(--verdigris); }
 .page-intro > .ornament-corner { position: absolute; top: 1.5rem; right: 0; color: var(--gold); }
 .cv-sheet { position: relative; max-width: 900px; margin: 0 auto; border: 1px solid var(--line); outline: 1px solid color-mix(in oklch, var(--gold), transparent 35%); outline-offset: .65rem; background: color-mix(in oklch, var(--paper), white 18%); padding: clamp(2rem, 6vw, 5rem); container: cv-sheet / inline-size; }
 .cv-heading { border-bottom: 1px solid var(--line); padding-bottom: 2rem; text-align: center; }
@@ -187,15 +188,10 @@ p { max-width: 62ch; }
 ::view-transition-old(*), ::view-transition-new(*) { animation-duration: 420ms; }
 ::view-transition-group(*) { animation-timing-function: cubic-bezier(.22, .61, .36, 1); }
 
-/* A scroll-linked reveal for the small vine ornament. It remains static where view timelines are unavailable. */
-.page-intro > .ornament-vine path:first-child { stroke-dasharray: 320; stroke-dashoffset: 320; }
-@supports (animation-timeline: view()) {
-  .page-intro > .ornament-vine { animation: ornament-enter linear both; animation-timeline: view(); animation-range: entry 0% cover 32%; }
-}
-@keyframes ornament-enter { to { opacity: 1; } }
+/* A scroll-linked reveal for the CV divider. It remains static where view timelines are unavailable. */
 @keyframes ornament-draw { to { stroke-dashoffset: 0; } }
 @supports (animation-timeline: view()) {
-  .page-intro > .ornament-vine path:first-child { animation: ornament-draw linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
+  .cv-scroll-ornament .ornament-vine path:first-child { stroke-dasharray: 320; stroke-dashoffset: 320; animation: ornament-draw linear both; animation-timeline: view(); animation-range: entry 0% cover 35%; }
 }
 
 /* Keep bespoke page systems from leaking into one another as the site grows. */
@@ -237,5 +233,5 @@ p { max-width: 62ch; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
-  .page-intro > .ornament-vine path:first-child { stroke-dashoffset: 0; }
+  .cv-scroll-ornament .ornament-vine path:first-child { stroke-dashoffset: 0; }
 }

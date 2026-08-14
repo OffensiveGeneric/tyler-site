@@ -30,10 +30,10 @@ const sourceSet = (format: "Avif" | "Webp") => [
     </header>
     <div class="photo-detail-layout">
       <figure class="photo-detail-figure">
-        <picture>{sourceSet("Avif") && <source type="image/avif" srcset={sourceSet("Avif")} />}{sourceSet("Webp") && <source type="image/webp" srcset={sourceSet("Webp")} />}<img src={`/media/${photo.largeAvif ?? photo.filename}`} alt={photo.title ?? ""} transition:name={`photo-${photo.slug}`} /></picture>
+        <picture>{sourceSet("Avif") && <source type="image/avif" srcset={sourceSet("Avif")} />}{sourceSet("Webp") && <source type="image/webp" srcset={sourceSet("Webp")} />}<img src={`/media/${photo.largeAvif ?? photo.filename}`} alt={photo.title ?? ""} /></picture>
         <figcaption>{caption}</figcaption>
       </figure>
-      <button class="photo-meta-trigger" type="button" popovertarget="photo-meta" aria-controls="photo-meta">Specimen notes</button>
+      <button class="photo-meta-trigger" type="button" popovertarget="photo-meta" aria-controls="photo-meta">Metadata</button>
       <aside id="photo-meta" class="photo-detail-meta" popover="auto">
         <p>{photo.title ?? "Untitled photograph"}</p>
         {photo.dateTaken && <p>{photo.dateTaken}</p>}
