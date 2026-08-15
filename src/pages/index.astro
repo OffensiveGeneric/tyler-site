@@ -130,11 +130,13 @@ import { ClientRouter } from "astro:transitions";
 
   .landing-pattern-lit {
     z-index: -2;
-    filter: url(#landing-glass-softness) brightness(1.35) saturate(1.8) contrast(1.08);
+    inset: -18%;
+    filter: brightness(1.25) saturate(1.55) contrast(1.05);
     opacity: .02;
     -webkit-mask-image: radial-gradient(ellipse 48% 66% at 30% 52%, #000 0 8%, rgba(0, 0, 0, .88) 26%, transparent 76%);
     mask-image: radial-gradient(ellipse 48% 66% at 30% 52%, #000 0 8%, rgba(0, 0, 0, .88) 26%, transparent 76%);
-    animation: pattern-light 14s ease-in-out infinite alternate;
+    animation: pattern-light 18s ease-in-out infinite alternate;
+    will-change: transform, opacity;
   }
 
   .landing-backlight {
@@ -147,6 +149,7 @@ import { ClientRouter } from "astro:transitions";
     mix-blend-mode: screen;
     opacity: .16;
     animation: backlight-drift 16s ease-in-out infinite alternate;
+    will-change: transform, opacity;
   }
 
   .landing-filter-defs {
@@ -273,15 +276,11 @@ import { ClientRouter } from "astro:transitions";
 
   @keyframes pattern-light {
     from {
-      background-position: 0 0;
-      -webkit-mask-position: 8% 50%;
-      mask-position: 8% 50%;
-    opacity: .02;
+      transform: translate(-10%, 1%);
+      opacity: .02;
     }
     to {
-      background-position: -16rem 8rem;
-      -webkit-mask-position: 92% 48%;
-      mask-position: 92% 48%;
+      transform: translate(10%, -2%);
       opacity: .78;
     }
   }
