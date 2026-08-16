@@ -156,7 +156,10 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
         transparent 0 1.9rem,
         var(--gold-shadow) 1.9rem 2rem,
         var(--gold-highlight) 2rem 2.08rem,
-        transparent 2.08rem 3.95rem
+        transparent 2.08rem 3rem,
+        var(--gold-shadow) 3rem 3.06rem,
+        var(--gold-highlight) 3.06rem 3.14rem,
+        transparent 3.14rem 3.95rem
       ),
       linear-gradient(
         to right,
@@ -170,17 +173,11 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
   }
 
   .about-edge-rail::after {
-    position: absolute;
-    inset: .35rem .03rem;
-    background:
-      radial-gradient(
-        circle,
-        var(--gold-highlight) 0 16%,
-        var(--oxblood) 18% 32%,
-        var(--gold) 34% 50%,
-        transparent 53%
-      ) center top / .45rem 3.95rem repeat-y;
-    content: "";
+    display: none;
+  }
+
+  .about-edge-rail::before {
+    display: none;
   }
 
   .about-masthead {
