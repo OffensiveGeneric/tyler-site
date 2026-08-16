@@ -10,6 +10,8 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
     <div class="about-sidework about-sidework-right" aria-hidden="true">
       <span class="about-edge-rail"></span><span class="about-lattice"></span><span class="about-edge-rail"></span>
     </div>
+    <div class="about-fanwork about-fanwork-left" aria-hidden="true"></div>
+    <div class="about-fanwork about-fanwork-right" aria-hidden="true"></div>
 
     <header class="about-masthead">
       <ArchitecturalOrnament kind="arch" class="about-arch" />
@@ -109,6 +111,26 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
 
   .about-sidework-left { left: .62rem; }
   .about-sidework-right { right: .62rem; }
+
+  .about-fanwork {
+    position: absolute;
+    z-index: 0;
+    top: 2.15rem;
+    bottom: 3.65rem;
+    width: clamp(3.25rem, 7vw, 5.5rem);
+    background: transparent url("/ornaments/fan-tracery-landing.svg") center top / 100% auto repeat-y;
+    opacity: .9;
+    pointer-events: none;
+  }
+
+  .about-fanwork-left {
+    left: calc(.62rem - clamp(3.25rem, 7vw, 5.5rem));
+  }
+
+  .about-fanwork-right {
+    right: calc(.62rem - clamp(3.25rem, 7vw, 5.5rem));
+    transform: scaleX(-1);
+  }
 
   .about-lattice {
     position: relative;
@@ -307,7 +329,7 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
   @media (max-width: 480px) {
     .about-page { padding-inline: 1.5rem; }
     .about-page::before { inset-inline: .35rem; }
-    .about-sidework { display: none; }
+    .about-sidework, .about-fanwork { display: none; }
     .about-masthead { min-height: 21rem; padding-inline: .5rem; }
     .about-folio { top: 1rem; }
     .inset-panel { margin-inline: 0; }
