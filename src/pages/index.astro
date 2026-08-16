@@ -46,14 +46,14 @@ import { ClientRouter } from "astro:transitions";
 
 <style>
   :global(html) {
-    background: #030504;
+    background: #000;
   }
 
   :global(body.landing-body) {
     min-width: 320px;
     margin: 0;
     padding: 0;
-    background: #030504;
+    background: #000;
     color: #f4efdc;
   }
 
@@ -66,12 +66,13 @@ import { ClientRouter } from "astro:transitions";
     --landing-yellow: #f4d56b;
     min-height: 220vh;
     overflow: clip;
-    background: #030504;
+    background: #000;
   }
 
   .landing-stage {
     position: sticky;
     top: 0;
+    z-index: 1;
     display: grid;
     min-height: 100svh;
     place-items: center;
@@ -79,8 +80,8 @@ import { ClientRouter } from "astro:transitions";
     overflow: hidden;
     padding: 4rem 1.5rem;
     background:
-      radial-gradient(circle at 50% 48%, rgba(14, 35, 35, .22), transparent 37rem),
-      #030504;
+      radial-gradient(circle at 50% 48%, rgba(54, 48, 34, .2), transparent 37rem),
+      #000;
   }
 
   .landing-stage::before,
@@ -94,17 +95,14 @@ import { ClientRouter } from "astro:transitions";
 
   .landing-stage::before {
     background:
-      radial-gradient(ellipse at 72% 24%, rgba(22, 197, 223, .1), transparent 23%),
-      radial-gradient(ellipse at 27% 69%, rgba(228, 169, 46, .08), transparent 28%);
+      radial-gradient(ellipse at 72% 24%, rgba(255, 245, 222, .12), transparent 23%),
+      radial-gradient(ellipse at 27% 69%, rgba(255, 225, 174, .1), transparent 28%);
     filter: blur(3rem);
     opacity: .75;
   }
 
   .landing-stage::after {
-    z-index: 4;
-    border: 1px solid rgba(244, 213, 107, .14);
-    inset: 1.2rem;
-    opacity: .5;
+    display: none;
   }
 
   .landing-pattern,
@@ -117,7 +115,7 @@ import { ClientRouter } from "astro:transitions";
 
   .landing-pattern,
   .landing-pattern-lit {
-    background-image: url("../ornaments/fan-tracery-tile.svg");
+    background-image: url("/ornaments/fan-tracery-landing.svg");
     background-position: center;
     background-repeat: repeat;
     background-size: clamp(11rem, 24vw, 22rem) auto;
@@ -131,10 +129,17 @@ import { ClientRouter } from "astro:transitions";
   .landing-pattern-lit {
     z-index: -2;
     inset: -18%;
-    filter: brightness(1.25) saturate(1.55) contrast(1.05);
+    /* The offset second pass is a static thickness/bevel cue, not a second moving lattice. */
+    background-image:
+      url("/ornaments/fan-tracery-landing.svg"),
+      url("/ornaments/fan-tracery-landing.svg");
+    background-position: center, calc(50% + 1px) calc(50% + 1px);
+    background-blend-mode: normal, screen;
+    filter: brightness(1.38) saturate(1.05) contrast(1.12);
     opacity: .02;
     -webkit-mask-image: radial-gradient(ellipse 48% 66% at 30% 52%, #000 0 8%, rgba(0, 0, 0, .88) 26%, transparent 76%);
     mask-image: radial-gradient(ellipse 48% 66% at 30% 52%, #000 0 8%, rgba(0, 0, 0, .88) 26%, transparent 76%);
+    mix-blend-mode: screen;
     animation: pattern-light 18s ease-in-out infinite alternate;
     will-change: transform, opacity;
   }
@@ -143,11 +148,12 @@ import { ClientRouter } from "astro:transitions";
     z-index: -1;
     inset: -25%;
     background:
-      radial-gradient(ellipse at 30% 50%, rgba(16, 190, 224, .34), transparent 26%),
-      radial-gradient(ellipse at 68% 42%, rgba(242, 190, 58, .2), transparent 23%);
+      radial-gradient(ellipse at 30% 50%, rgba(255, 247, 226, .34), transparent 26%),
+      radial-gradient(ellipse at 68% 42%, rgba(255, 224, 172, .2), transparent 23%),
+      radial-gradient(ellipse at 50% 52%, rgba(255, 239, 204, .14), transparent 38%);
     filter: blur(4rem);
     mix-blend-mode: screen;
-    opacity: .16;
+    opacity: .28;
     animation: backlight-drift 16s ease-in-out infinite alternate;
     will-change: transform, opacity;
   }
@@ -195,7 +201,7 @@ import { ClientRouter } from "astro:transitions";
     display: none;
     z-index: 2;
     color: transparent;
-    background: url("../ornaments/fan-tracery-tile.svg") center / 26rem 27.6rem repeat;
+    background: url("/ornaments/fan-tracery-landing.svg") center / 26rem 27.6rem repeat;
     -webkit-background-clip: text;
     background-clip: text;
     filter: url(#landing-glass-softness) saturate(1.25) brightness(1.12);
@@ -281,7 +287,7 @@ import { ClientRouter } from "astro:transitions";
     }
     to {
       transform: translate(10%, -2%);
-      opacity: .78;
+      opacity: .86;
     }
   }
 
@@ -296,6 +302,12 @@ import { ClientRouter } from "astro:transitions";
     0% { background-position: 0 45%; opacity: .05; }
     55% { background-position: 55% 50%; opacity: .3; }
     100% { background-position: 100% 55%; opacity: .52; }
+  }
+
+  @keyframes scroll-pattern-light {
+    0% { transform: translate(-10%, 1%); opacity: .02; }
+    55% { transform: translate(0, 0); opacity: .38; }
+    100% { transform: translate(10%, -2%); opacity: .86; }
   }
 
   @keyframes scroll-light-one {
