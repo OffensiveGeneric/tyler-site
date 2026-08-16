@@ -156,10 +156,7 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
         transparent 0 1.9rem,
         var(--gold-shadow) 1.9rem 2rem,
         var(--gold-highlight) 2rem 2.08rem,
-        transparent 2.08rem 3rem,
-        var(--gold-shadow) 3rem 3.06rem,
-        var(--gold-highlight) 3.06rem 3.14rem,
-        transparent 3.14rem 3.95rem
+        transparent 2.08rem 3.95rem
       ),
       linear-gradient(
         to right,
@@ -177,7 +174,21 @@ import ArchitecturalOrnament from "../components/ArchitecturalOrnament.astro";
   }
 
   .about-edge-rail::before {
-    display: none;
+    position: absolute;
+    z-index: 2;
+    top: .05rem;
+    bottom: .05rem;
+    left: 50%;
+    width: .12rem;
+    transform: translateX(-50%);
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0 3rem,
+      var(--gold-shadow) 3rem 3.08rem,
+      var(--gold-highlight) 3.08rem 3.36rem,
+      transparent 3.36rem 3.95rem
+    );
+    content: "";
   }
 
   .about-masthead {
