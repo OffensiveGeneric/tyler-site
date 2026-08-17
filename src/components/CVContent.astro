@@ -24,8 +24,9 @@ const { plain = false } = Astro.props;
     <address class="cv-contact">
       <span>Bronx, NY</span><span aria-hidden="true"> · </span>
       <a href="mailto:tyleralk@gmail.com">tyleralk@gmail.com</a><span aria-hidden="true"> · </span>
-      <a href="https://github.com/OffensiveGeneric" rel="me">github.com/OffensiveGeneric</a><span aria-hidden="true"> · </span>
-      <a href="https://www.linkedin.com/in/tyler-laboe-kleint/" rel="me">linkedin.com/in/tyler-laboe-kleint</a>
+      <a href="https://ooknulsus.com">ooknulsus.com</a><span aria-hidden="true"> · </span>
+      <a href="https://www.linkedin.com/in/tyler-laboe-kleint/" rel="me">LinkedIn</a><span aria-hidden="true"> · </span>
+      <a href="https://github.com/OffensiveGeneric" rel="me">GitHub</a>
     </address>
   </header>
 
@@ -50,9 +51,11 @@ const { plain = false } = Astro.props;
       {!plain && <div class="cv-scroll-ornament" aria-hidden="true"><Ornament kind="vertical-vine" /><Ornament kind="vine" /></div>}
       <div class="cv-entries">
         <article>
-          <div class="cv-entry-meta"><time datetime="2020-01">January 2020</time> – <time datetime="2024-12">December 2024</time></div>
           <div>
-            <h3>Junior Systems Administrator</h3>
+            <header class="cv-entry-heading">
+              <h3>Junior Systems Administrator</h3>
+              <p class="cv-entry-meta"><time datetime="2020-01">January 2020</time> – <time datetime="2024-12">December 2024</time></p>
+            </header>
             <p class="cv-employer">The City College of New York, Computer Science Department · New York, NY</p>
             <ul>
               <li>Administered a multi-user Linux lab supporting university research and computer science instruction.</li>
@@ -66,32 +69,29 @@ const { plain = false } = Astro.props;
     </section>
 
     <section class="cv-section">
-      <h2>Research Infrastructure</h2>
+      <h2>Technical Projects</h2>
       {!plain && <div class="cv-scroll-ornament" aria-hidden="true"><Ornament kind="vertical-vine" /><Ornament kind="vine" /></div>}
       <div class="cv-entries">
         <article>
-          <div class="cv-entry-meta"><time datetime="2025">2025</time> – Present</div>
           <div>
-            <h3><a href="https://github.com/ccny-glasslab/glasslab-cluster-config">CCNY Glasslab — Research Infrastructure Engineering</a></h3>
+            <header class="cv-entry-heading">
+              <h3><a href="https://github.com/ccny-glasslab/glasslab-cluster-config">CCNY Glasslab — Research Infrastructure Engineering</a></h3>
+              <p class="cv-entry-meta"><time datetime="2025">2025</time> – Present</p>
+            </header>
             <p class="cv-employer">Research infrastructure project</p>
             <ul>
-              <li>Build and operate a multi-node Kubernetes and NVIDIA GPU research platform that turns approved experiment plans into bounded Jobs with traceable run artifacts.</li>
-              <li>Automate PXE provisioning, Ansible configuration, package maintenance, container-image delivery, and runbook-driven validation from a dedicated Linux provisioner.</li>
+              <li>Build and administer a 7-node Kubernetes research cluster with 4 schedulable NVIDIA GPU workers and an 11 TB NFS-backed shared-storage pool.</li>
+              <li>Automate PXE provisioning, host and GPU configuration, package maintenance, container-image delivery, and operational checks with Ansible and Bash.</li>
               <li>Maintain a durable control plane spanning workflow APIs and registries, PostgreSQL, MinIO, NATS, local model serving, CI policy, and post-change smoke tests.</li>
             </ul>
           </div>
         </article>
-      </div>
-    </section>
-
-    <section class="cv-section">
-      <h2>Selected Projects</h2>
-      {!plain && <div class="cv-scroll-ornament" aria-hidden="true"><Ornament kind="vertical-vine" /><Ornament kind="vine" /></div>}
-      <div class="cv-entries">
         <article>
-          <div class="cv-entry-meta"><time datetime="2025">2025</time> – <time datetime="2026">2026</time></div>
           <div>
-            <h3><a href="https://github.com/OffensiveGeneric/ADNS">ADNS — Anomaly Detection Network System</a></h3>
+            <header class="cv-entry-heading">
+              <h3><a href="https://github.com/OffensiveGeneric/ADNS">ADNS — Anomaly Detection Network System</a></h3>
+              <p class="cv-entry-meta"><time datetime="2025">2025</time> – <time datetime="2026">2026</time></p>
+            </header>
             <p class="cv-employer">Computer Science senior project</p>
             <ul>
               <li>Built an end-to-end anomaly-detection platform combining live <code>tshark</code> capture, Flask APIs, PostgreSQL, Redis/RQ asynchronous scoring, machine-learning detection, and a React dashboard.</li>
