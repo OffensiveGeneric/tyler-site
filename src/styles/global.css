@@ -206,13 +206,14 @@ p { max-width: 62ch; }
 ::view-transition-group(*) { animation-timing-function: cubic-bezier(.22, .61, .36, 1); }
 @view-transition { navigation: auto; }
 
-/* A scroll-linked reveal for the CV divider. It remains static where timelines are unavailable. */
+/* Reveal each CV vine as its own section enters the viewport. It remains static where view timelines are unavailable. */
 @keyframes vine-grow { from { clip-path: inset(0 0 100%); } to { clip-path: inset(0); } }
-@supports (animation-timeline: scroll()) {
+@supports (animation-timeline: view()) {
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament { view-timeline: --cv-vine block; }
   .cv-section:has(.cv-entries) > .cv-scroll-ornament .vine-left,
-  .cv-section:has(.cv-entries) > .cv-scroll-ornament .vine-right { animation-name: vine-grow; animation-timing-function: linear; animation-fill-mode: both; animation-duration: 1ms; animation-timeline: scroll(); }
-  .cv-section:has(.cv-entries) > .cv-scroll-ornament .vine-left { animation-range: 0% 58%; }
-  .cv-section:has(.cv-entries) > .cv-scroll-ornament .vine-right { animation-range: 18% 76%; }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .vine-right { animation-name: vine-grow; animation-timing-function: linear; animation-fill-mode: both; animation-duration: 1ms; animation-timeline: --cv-vine; }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .vine-left { animation-range: entry 0% cover 62%; }
+  .cv-section:has(.cv-entries) > .cv-scroll-ornament .vine-right { animation-range: entry 14% cover 78%; }
 }
 
 /* Keep bespoke page systems from leaking into one another as the site grows. */
