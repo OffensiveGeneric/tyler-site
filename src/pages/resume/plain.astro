@@ -1,0 +1,20 @@
+---
+import SiteLayout from "../../layouts/SiteLayout.astro";
+import CVContent from "../../components/CVContent.astro";
+---
+
+<SiteLayout
+  title="Plain Résumé — Linux Systems Administrator in New York"
+  documentTitle="Plain Résumé — Tyler Kleint, Linux Systems Administrator, New York"
+  description="Plain, single-column résumé of Tyler Kleint, Linux systems administrator in New York."
+  mode="plain"
+>
+  <Fragment slot="head"><meta name="robots" content="noindex,follow" /></Fragment>
+  <div class="resume-plain-page">
+    <nav class="resume-actions" aria-label="Résumé formats">
+      <a href="/resume">Web résumé</a>
+      <a href="/tyler-kleint-resume.pdf" download>Download PDF</a>
+    </nav>
+    <CVContent plain />
+  </div>
+</SiteLayout>

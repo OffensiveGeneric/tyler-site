@@ -7,10 +7,11 @@ import { ClientRouter } from "astro:transitions";
 interface Props {
   title: string;
   description?: string;
-  mode?: "jewel" | "contact";
+  mode?: "jewel" | "contact" | "plain";
+  documentTitle?: string;
 }
 
-const { title, description = "The personal site of Tyler Kleint.", mode = "jewel" } = Astro.props;
+const { title, description = "The personal site of Tyler Kleint.", mode = "jewel", documentTitle = `${title} — Tyler Kleint` } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://ooknulsus.com");
 const socialImage = new URL("/images/about/tyler-portrait-1400.webp", Astro.site ?? canonicalURL);
 const personSchema = {
@@ -19,6 +20,9 @@ const personSchema = {
   name: "Tyler Kleint",
   url: new URL("/", Astro.site ?? canonicalURL).href,
   email: "mailto:tyleralk@gmail.com",
+  jobTitle: "Linux Systems Administrator",
+  knowsAbout: ["Linux systems administration", "University research computing", "Docker", "Kubernetes", "Ansible", "Cloud infrastructure", "Computer networking"],
+  alumniOf: { "@type": "CollegeOrUniversity", name: "The City College of New York" },
   address: { "@type": "PostalAddress", addressLocality: "Bronx", addressRegion: "NY", addressCountry: "US" },
   sameAs: ["https://github.com/OffensiveGeneric", "https://www.linkedin.com/in/tyler-laboe-kleint/"],
 };
@@ -36,36 +40,36 @@ const fontStylesheet = mode === "contact"
     <link rel="canonical" href={canonicalURL} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Tyler Kleint" />
-    <meta property="og:title" content={`${title} — Tyler Kleint`} />
+    <meta property="og:title" content={documentTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:alt" content="Portrait of Tyler Kleint" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={`${title} — Tyler Kleint`} />
+    <meta name="twitter:title" content={documentTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href={fontStylesheet} />
-    {mode === "jewel" && <ClientRouter />}
+  {mode === "jewel" && <ClientRouter />}
     <slot name="head" />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
-    <title>{title} — Tyler Kleint</title>
+    <title>{documentTitle}</title>
   </head>
-  <body class:list={{ "contact-mode": mode === "contact", "jewel-mode": mode === "jewel" }}>
-    <SiteHeader mode={mode} />
+  <body class:list={{ "contact-mode": mode === "contact", "jewel-mode": mode === "jewel", "plain-mode": mode === "plain" }}>
+    {mode !== "plain" && <SiteHeader mode={mode} />}
     <main>
       <slot />
     </main>
-    <footer class="site-footer wrapper">
+    {mode !== "plain" && <footer class="site-footer wrapper">
       {mode === "jewel" && <Ornament kind="divider" />}
       <div class="footer-line">
         <p>© {new Date().getFullYear()} Tyler Kleint</p>
         <p>{mode === "contact" ? "Contact sheet / end of roll" : "Built with Astro, semantic HTML & CSS."}</p>
         {mode === "jewel" && <a class="site-badge" href="/about" aria-label="About this site">HAND-SET<br />HTML / CSS</a>}
       </div>
-    </footer>
+    </footer>}
   </body>
 </html>

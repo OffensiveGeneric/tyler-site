@@ -1,12 +1,3 @@
 ---
-import SiteLayout from "../layouts/SiteLayout.astro";
-import CVContent from "../components/CVContent.astro";
-import Ornament from "../components/Ornament.astro";
+return Astro.redirect("/resume", 301);
 ---
-
-<SiteLayout title="CV" description="The curriculum vitae of Tyler Kleint.">
-  <section class="wrapper cv-page-intro">
-    <Ornament kind="rosette" />
-    <CVContent />
-  </section>
-</SiteLayout>

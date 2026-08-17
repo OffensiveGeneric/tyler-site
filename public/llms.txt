@@ -1,0 +1,17 @@
+# Tyler Kleint
+
+> Personal website and résumé of Tyler Kleint, a Linux systems administrator and Computer Science graduate in New York.
+
+## Primary pages
+
+- [Résumé](https://ooknulsus.com/resume): Web résumé with systems-administration experience, current infrastructure work, selected projects, skills, and education.
+- [Plain résumé](https://ooknulsus.com/resume/plain): Single-column, application-system-friendly résumé layout.
+- [Résumé PDF](https://ooknulsus.com/tyler-kleint-resume.pdf): Downloadable one-page résumé.
+- [Photography](https://ooknulsus.com/photography): Photography portfolio.
+- [Writing](https://ooknulsus.com/blog): Essays and project writing.
+- [About](https://ooknulsus.com/about): Biography and site information.
+
+## Profiles
+
+- [GitHub](https://github.com/OffensiveGeneric)
+- [LinkedIn](https://www.linkedin.com/in/tyler-laboe-kleint/)

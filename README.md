@@ -16,6 +16,16 @@ npm run build
 npm run preview
 ```
 
+## Résumé PDF
+
+The web résumé lives at `/resume`; `/cv` permanently redirects there. Generate the committed, plain single-column PDF after résumé content changes with:
+
+```sh
+npm run resume:pdf
+```
+
+The command requires Google Chrome or Chromium and writes `public/tyler-kleint-resume.pdf`.
+
 ## Blog images
 
 The easiest method is the interactive helper:

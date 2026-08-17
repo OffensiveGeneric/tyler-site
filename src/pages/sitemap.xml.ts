@@ -20,7 +20,7 @@ export const GET: APIRoute = async ({ site }) => {
   const gallery = db.select({ slug: photos.slug }).from(photos).orderBy(asc(photos.createdAt), asc(photos.id)).all();
   const paths = [
     "/",
-    "/cv",
+    "/resume",
     "/photography",
     "/blog",
     "/about",

@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "resume:pdf": "node scripts/generate-resume-pdf.mjs",
     "blog:image": "node scripts/prepare-blog-image.mjs",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",

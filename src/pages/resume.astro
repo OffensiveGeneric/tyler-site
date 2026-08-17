@@ -1,0 +1,24 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import CVContent from "../components/CVContent.astro";
+import Ornament from "../components/Ornament.astro";
+---
+
+<SiteLayout
+  title="Résumé — Linux Systems Administrator in New York"
+  documentTitle="Résumé — Tyler Kleint, Linux Systems Administrator, New York"
+  description="Résumé of Tyler Kleint, a Linux systems administrator in New York with university research-computing, cloud, networking, and Kubernetes experience."
+>
+  <Fragment slot="head">
+    <meta name="robots" content="index,follow" />
+  </Fragment>
+  <section class="wrapper cv-page-intro">
+    <Ornament kind="rosette" />
+    <nav class="resume-actions" aria-label="Résumé formats">
+      <a href="/tyler-kleint-resume.pdf" download>Download plain PDF</a>
+      <a href="/resume/plain">ATS-friendly layout</a>
+    </nav>
+    <CVContent />
+    <aside class="cv-colophon">This web résumé is built with semantic HTML and print styles. A plain, single-column version is provided for application systems.</aside>
+  </section>
+</SiteLayout>
