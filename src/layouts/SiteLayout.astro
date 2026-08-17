@@ -11,6 +11,17 @@ interface Props {
 }
 
 const { title, description = "The personal site of Tyler Kleint.", mode = "jewel" } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://ooknulsus.com");
+const socialImage = new URL("/images/about/tyler-portrait-1400.webp", Astro.site ?? canonicalURL);
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Tyler Kleint",
+  url: new URL("/", Astro.site ?? canonicalURL).href,
+  email: "mailto:tyleralk@gmail.com",
+  address: { "@type": "PostalAddress", addressLocality: "Bronx", addressRegion: "NY", addressCountry: "US" },
+  sameAs: ["https://github.com/OffensiveGeneric", "https://www.linkedin.com/in/tyler-laboe-kleint/"],
+};
 const fontStylesheet = mode === "contact"
   ? "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
   : "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap";
@@ -22,12 +33,25 @@ const fontStylesheet = mode === "contact"
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Tyler Kleint" />
+    <meta property="og:title" content={`${title} — Tyler Kleint`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content="Portrait of Tyler Kleint" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={`${title} — Tyler Kleint`} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href={fontStylesheet} />
     {mode === "jewel" && <ClientRouter />}
     <slot name="head" />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(personSchema)} />
     <title>{title} — Tyler Kleint</title>
   </head>
   <body class:list={{ "contact-mode": mode === "contact", "jewel-mode": mode === "jewel" }}>
@@ -39,7 +63,7 @@ const fontStylesheet = mode === "contact"
       {mode === "jewel" && <Ornament kind="divider" />}
       <div class="footer-line">
         <p>© {new Date().getFullYear()} Tyler Kleint</p>
-        <p>{mode === "contact" ? "Contact sheet / end of roll" : "Made by hand in HTML & CSS."}</p>
+        <p>{mode === "contact" ? "Contact sheet / end of roll" : "Built with Astro, semantic HTML & CSS."}</p>
         {mode === "jewel" && <a class="site-badge" href="/about" aria-label="About this site">HAND-SET<br />HTML / CSS</a>}
       </div>
     </footer>

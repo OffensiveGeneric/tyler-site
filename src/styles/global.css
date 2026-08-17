@@ -12,6 +12,7 @@
   --emerald: oklch(46% 0.1 158);
   --violet: oklch(43% 0.14 315);
   --gold: oklch(66% 0.13 78);
+  --gold-text: oklch(43% 0.11 78);
   --gold-shadow: color-mix(in oklch, var(--gold), black 32%);
   --gold-highlight: color-mix(in oklch, var(--gold), white 28%);
   --paper-shadow: color-mix(in oklch, var(--paper), black 12%);
@@ -28,7 +29,7 @@ html { background: var(--paper); color: var(--ink); }
 body { margin: 0; min-width: 320px; padding-left: 15rem; line-height: 1.55; -webkit-font-smoothing: antialiased; }
 body, button { font-family: var(--body); font-optical-sizing: auto; }
 a { color: inherit; text-decoration: none; }
-a:focus-visible { outline: 2px solid var(--gold); outline-offset: 5px; }
+a:focus-visible { outline: 2px solid var(--gold-text); outline-offset: 5px; }
 .wrapper { width: min(100% - 3rem, 1180px); margin-inline: auto; }
 
 /* Jewel-box mode: a page with visible construction and a little ceremony. */
@@ -40,10 +41,10 @@ a:focus-visible { outline: 2px solid var(--gold); outline-offset: 5px; }
 .jewel-mode .site-header::after { position: absolute; top: 0; right: -.32rem; bottom: 0; left: auto; width: 1px; height: auto; background: var(--gold); content: ""; }
 .wordmark { display: inline-flex; align-items: center; gap: .7rem; font-family: var(--mono); font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; }
 .wordmark-mark { display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border: 1px solid var(--oxblood); color: var(--oxblood); font-family: var(--display); font-size: 1.2rem; font-weight: 600; transform: rotate(-6deg); }
-.nav-list { display: flex; gap: 1.35rem; margin: 0; padding: 0; flex-direction: column; list-style: none; font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; text-transform: uppercase; }
+.nav-list { display: flex; gap: 1.35rem; margin: 0; padding: 0; flex-direction: column; list-style: none; font-family: var(--mono); font-size: .75rem; letter-spacing: .04em; text-transform: uppercase; }
 .nav-list a { color: var(--muted); transition: color 180ms ease; }
 .nav-list a:hover, .nav-list a.active { color: var(--oxblood); }
-.nav-index { color: var(--gold); }
+.nav-index { color: var(--gold-text); }
 .eyebrow { margin: 0 0 1rem; color: var(--oxblood); font-family: var(--mono); font-size: .67rem; letter-spacing: .12em; text-transform: uppercase; }
 h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: .94; letter-spacing: -.045em; }
 h1 { max-width: 11ch; margin: 0; font-size: clamp(4rem, 10vw, 9.5rem); }
@@ -104,7 +105,7 @@ p { max-width: 62ch; }
 .ornament-rosette { width: 3rem; height: 3rem; }
 .ornament-corner, .ornament-frame-corner { width: 6rem; height: 6rem; }
 .ornament-stained-glass { position: absolute; top: 2rem; right: 4rem; width: clamp(5rem, 10vw, 9rem); height: auto; color: var(--ultramarine); opacity: .72; filter: drop-shadow(0 0 .3rem var(--gold-shadow)); }
-.site-footer { padding: 2rem 0 3rem; color: var(--muted); font-family: var(--mono); font-size: .68rem; }
+.site-footer { padding: 2rem 0 3rem; color: var(--muted); font-family: var(--mono); font-size: .75rem; }
 .footer-line { display: flex; justify-content: space-between; gap: 1rem; }
 .site-footer p { margin: 0; }
 .cv-page-intro { position: relative; padding: clamp(3rem, 7vw, 7rem) 0; }
@@ -118,23 +119,22 @@ p { max-width: 62ch; }
 .cv-heading h1 { max-width: none; margin: .2rem auto .5rem; font-size: clamp(4rem, 10vw, 8rem); }
 .cv-heading .ornament-divider { margin-bottom: .8rem; }
 .cv-subtitle { margin: 0 auto; color: var(--oxblood); font-family: var(--display); font-size: 1.5rem; }
-.cv-contact { margin: 1rem auto 0; color: var(--muted); font-family: var(--mono); font-size: .65rem; font-style: normal; }
-.cv-contact a { border-bottom: 1px solid var(--gold); }
-.contact-reveal { border: 0; border-bottom: 1px dashed var(--gold); background: transparent; color: var(--oxblood); cursor: pointer; font: inherit; padding: 0; }
-.contact-reveal:hover { color: var(--ultramarine); }
+.cv-contact { margin: 1rem auto 0; color: var(--muted); font-family: var(--mono); font-size: .75rem; font-style: normal; }
+.cv-contact a { border-bottom: 1px solid var(--gold-text); color: var(--oxblood); }
 .cv-body { padding-top: 2.4rem; }
 .cv-section { display: grid; grid-template-columns: minmax(8rem, .3fr) 1fr; gap: 2rem; border-bottom: 1px solid var(--line); padding: 1.8rem 0; content-visibility: auto; contain-intrinsic-size: 14rem; }
-.cv-section h2 { color: var(--oxblood); font-family: var(--mono); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; }
+.cv-section h2 { color: var(--oxblood); font-family: var(--mono); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
 .cv-section p { margin: 0; font-size: 1.08rem; }
 .cv-entries { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 1.5rem 1rem; }
 .cv-entries article { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; gap: 1rem; }
-.cv-entry-meta, .cv-list { color: var(--muted); font-family: var(--mono); font-size: .68rem !important; line-height: 1.7; }
+.cv-entry-meta, .cv-list { color: var(--muted); font-family: var(--mono); font-size: .75rem !important; line-height: 1.7; }
 .cv-entries h3 { margin: 0 0 .35rem; color: var(--ink); font-size: 1.55rem; }
+.cv-entries h3 a { text-decoration: underline; text-decoration-color: var(--gold-text); text-decoration-thickness: 1px; text-underline-offset: .15em; }
 .cv-employer { color: var(--oxblood); font-family: var(--mono); font-size: .72rem !important; }
 .cv-entries ul { margin: .7rem 0 0; padding-left: 1.15rem; }
 .cv-entries li { margin: .35rem 0; font-size: .95rem; }
 .cv-education { margin: 0; color: var(--ink); font-family: var(--display); font-size: 1.55rem; font-weight: 600; }
-.cv-colophon { padding-top: 2rem; color: var(--muted); font-family: var(--mono); font-size: .62rem; text-align: center; }
+.cv-colophon { padding-top: 2rem; color: var(--muted); font-family: var(--mono); font-size: .75rem; text-align: center; }
 
 .cv-frame-ornament { position: absolute; z-index: 1; width: 5rem; height: 5rem; color: var(--gold); pointer-events: none; }
 .cv-frame-ornament .ornament-frame-corner { width: 100%; height: 100%; }
@@ -144,8 +144,8 @@ p { max-width: 62ch; }
 .cv-frame-br { right: -.8rem; bottom: -.8rem; transform: scale(-1); }
 
 @container cv-sheet (min-width: 44rem) {
-  .cv-section:has(.cv-entries) { grid-template-columns: 2rem 1rem minmax(0, 1fr); column-gap: .75rem; border-bottom-color: color-mix(in oklch, var(--gold), var(--line) 55%); }
-  .cv-section > h2 { writing-mode: vertical-rl; text-orientation: mixed; justify-self: start; }
+  .cv-section:has(.cv-entries) { grid-template-columns: 8rem 1rem minmax(0, 1fr); column-gap: .75rem; border-bottom-color: color-mix(in oklch, var(--gold), var(--line) 55%); }
+  .cv-section > h2 { writing-mode: horizontal-tb; justify-self: start; }
   .cv-section:has(.cv-entries) > .cv-scroll-ornament { position: relative; grid-column: 2; grid-row: 1; align-self: stretch; min-height: 10rem; margin: 0; background: linear-gradient(to right, transparent calc(50% - .5px), color-mix(in oklch, var(--verdigris), transparent 45%) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)); }
   .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine { display: none; }
   .cv-section:has(.cv-entries) > .cv-scroll-ornament .ornament-vine-vertical { position: absolute; top: 0; bottom: 0; left: 50%; right: auto; display: block; width: 2rem; height: 100%; min-height: 0; transform: translateX(-50%); }

@@ -1,11 +1,12 @@
 ---
 const links = [
-  { href: "/", label: "CV" },
+  { href: "/cv", label: "CV" },
   { href: "/photography", label: "Photography" },
   { href: "/blog", label: "Writing" },
   { href: "/about", label: "About" },
 ];
 const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) => currentPath === href || (href !== "/" && currentPath.startsWith(`${href}/`));
 interface Props { mode?: "jewel" | "contact"; }
 const { mode = "jewel" } = Astro.props;
 ---
@@ -13,13 +14,13 @@ const { mode = "jewel" } = Astro.props;
 <header class="site-header wrapper">
   <a class="wordmark" href="/" aria-label="Tyler Kleint home">
     <span class="wordmark-mark">TK</span>
-    <span class="wordmark-name">{mode === "contact" ? "TYLER ______ / PHOTOGRAPHY" : "Tyler ______"}</span>
+    <span class="wordmark-name">{mode === "contact" ? "TYLER KLEINT / PHOTOGRAPHY" : "Tyler Kleint"}</span>
   </a>
   <nav aria-label="Main navigation">
     <ul class="nav-list">
       {links.map((link) => (
         <li>
-          <a href={link.href} class:list={{ active: link.href === "/" ? currentPath === "/" || currentPath.startsWith("/cv") : currentPath.startsWith(link.href) }}>
+          <a href={link.href} class:list={{ active: isCurrent(link.href) }} aria-current={isCurrent(link.href) ? "page" : undefined}>
             <span class="nav-index">[{String(links.indexOf(link) + 1).padStart(2, "0")}]</span> {link.label}
           </a>
         </li>

@@ -16,7 +16,7 @@ if (!photo) {
 const index = gallery.findIndex((entry) => entry.id === photo.id);
 const previous = gallery[(index - 1 + gallery.length) % gallery.length];
 const next = gallery[(index + 1) % gallery.length];
-const caption = photo.caption ?? photo.filename;
+const caption = photo.title?.trim() || photo.caption?.trim() || "Untitled photograph";
 const swapsAxes = [5, 6, 7, 8].includes(Number(photo.orientation));
 const displayWidth = swapsAxes ? photo.height : photo.width;
 const displayHeight = swapsAxes ? photo.width : photo.height;
@@ -51,7 +51,7 @@ const nextHref = `/photography/${next.slug}`;
     </header>
     <div class="photo-detail-layout">
       <figure class="photo-detail-figure">
-        <picture>{sourceSet("Avif") && <source type="image/avif" srcset={sourceSet("Avif")} sizes={detailSizes} />}{sourceSet("Webp") && <source type="image/webp" srcset={sourceSet("Webp")} sizes={detailSizes} />}<img src={`/media/${photo.mediumWebp ?? photo.largeWebp ?? photo.filename}`} alt={photo.title ?? ""} width={displayWidth} height={displayHeight} decoding="async" fetchpriority="high" style={`view-transition-name: photo-${photo.id}`} /></picture>
+        <picture>{sourceSet("Avif") && <source type="image/avif" srcset={sourceSet("Avif")} sizes={detailSizes} />}{sourceSet("Webp") && <source type="image/webp" srcset={sourceSet("Webp")} sizes={detailSizes} />}<img src={`/media/${photo.mediumWebp ?? photo.largeWebp ?? photo.filename}`} alt={caption} width={displayWidth} height={displayHeight} decoding="async" fetchpriority="high" style={`view-transition-name: photo-${photo.id}`} /></picture>
         <figcaption>{caption}</figcaption>
       </figure>
       <button class="photo-meta-trigger" type="button" popovertarget="photo-meta" aria-controls="photo-meta">Metadata</button>

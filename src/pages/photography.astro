@@ -37,7 +37,8 @@ const firstPhoto = gallery[0];
         <div class="photo-grid">
           {gallery.map((photo, photoIndex) => {
             const dimensions = displayDimensions(photo);
-            return <figure><a class="photo-link" href={`/photography/${photo.slug}`} aria-label={`Open ${photo.title ?? "photograph"}`}><picture>{sourceSet(photo, "Avif") && <source type="image/avif" srcset={sourceSet(photo, "Avif")} sizes={thumbnailSizes} />}{sourceSet(photo, "Webp") && <source type="image/webp" srcset={sourceSet(photo, "Webp")} sizes={thumbnailSizes} />}<img src={`/media/${photo.thumbWebp ?? photo.thumbAvif ?? photo.filename}`} alt={photo.title ?? ""} width={dimensions.width} height={dimensions.height} loading={photoIndex === 0 ? "eager" : "lazy"} decoding="async" fetchpriority={photoIndex === 0 ? "high" : "low"} style={`view-transition-name: photo-${photo.id}`} /></picture></a><figcaption>{photo.caption ?? photo.filename}</figcaption></figure>;
+            const label = photo.title?.trim() || photo.caption?.trim() || "Untitled photograph";
+            return <figure><a class="photo-link" href={`/photography/${photo.slug}`} aria-label={`Open ${label}`}><picture>{sourceSet(photo, "Avif") && <source type="image/avif" srcset={sourceSet(photo, "Avif")} sizes={thumbnailSizes} />}{sourceSet(photo, "Webp") && <source type="image/webp" srcset={sourceSet(photo, "Webp")} sizes={thumbnailSizes} />}<img src={`/media/${photo.thumbWebp ?? photo.thumbAvif ?? photo.filename}`} alt={label} width={dimensions.width} height={dimensions.height} loading={photoIndex === 0 ? "eager" : "lazy"} decoding="async" fetchpriority={photoIndex === 0 ? "high" : "low"} style={`view-transition-name: photo-${photo.id}`} /></picture></a><figcaption>{label}</figcaption></figure>;
           })}
         </div>
       ) : (

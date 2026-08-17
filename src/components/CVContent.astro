@@ -9,31 +9,38 @@ import Ornament from "./Ornament.astro";
   <div class="cv-frame-ornament cv-frame-br"><Ornament kind="frame-corner" /></div>
   <header class="cv-heading">
     <Ornament kind="divider" />
-    <h1 id="cv-title">Tyler Allen Laboe Kleint</h1>
-    <p class="cv-subtitle">Linux systems administrator &amp; computer scientist.</p>
+    <h1 id="cv-title">Tyler Kleint</h1>
+    <p class="cv-subtitle">Linux systems administrator &amp; software developer.</p>
     <address class="cv-contact">
-      Bronx, New York ·
-      <button class="contact-reveal" type="button" data-contact-kind="email" data-contact-value="dHlsZXJhbGtAZ21haWwuY29t">reveal email</button> ·
-      <button class="contact-reveal" type="button" data-contact-kind="phone" data-contact-value="KDkxNCkgNTMxLTY1NzA=">reveal phone</button>
+      Bronx, New York · <a href="mailto:tyleralk@gmail.com">tyleralk@gmail.com</a> ·
+      <a href="https://github.com/OffensiveGeneric" rel="me">GitHub</a> ·
+      <a href="https://www.linkedin.com/in/tyler-laboe-kleint/" rel="me">LinkedIn</a>
     </address>
   </header>
 
   <div class="cv-body">
     <section class="cv-section">
       <h2>Profile</h2>
-      <div><p>Linux systems administrator and Computer Science graduate with four years supporting university research and instructional computing for up to 60 concurrent users across an approximately 15-computer, Kubernetes-connected lab. Experienced with Ubuntu, JupyterHub, Nginx, Bash/SSH automation, VMware, and hybrid Azure/AWS infrastructure.</p></div>
+      <div><p>Linux systems administrator and Computer Science graduate with experience supporting university research and instructional computing for up to 60 concurrent users across an approximately 15-computer, Kubernetes-connected lab. Experienced with Ubuntu, JupyterHub, Nginx, Bash/SSH automation, VMware, and hybrid Azure/AWS infrastructure.</p></div>
     </section>
     <section class="cv-section">
-      <h2>Selected work</h2>
+      <h2>Experience</h2>
       <div class="cv-scroll-ornament" aria-hidden="true"><Ornament kind="vertical-vine" /><Ornament kind="vine" /></div>
       <div class="cv-entries">
-        <article><div class="cv-entry-meta">Jan. 2020—<br />Dec. 2024</div><div><h3>Junior Systems Administrator</h3><p class="cv-employer">The City College of New York, Computer Science Department · New York, NY</p><ul><li>Supported an approximately 15-computer, Kubernetes-connected lab environment serving up to 60 concurrent research and instructional users.</li><li>Deployed Linux servers, multi-user JupyterHub instances, Nginx reverse proxies, TLS certificates, and Let’s Encrypt access.</li><li>Developed Bash automation for remote SSH connections and administered DNS, DHCP, LDAP, VMware, and monitoring tooling.</li><li>Used Azure and AWS alongside on-premises systems to support hybrid cloud infrastructure.</li></ul></div></article>
-        <article><div class="cv-entry-meta">2026</div><div><h3>Distributed AI Infrastructure</h3><p class="cv-employer">CCNY GlassLab</p><ul><li>Configured two Apple Silicon Mac Studio nodes for distributed MLX inference over Thunderbolt using JACCL.</li><li>Built distributed test harnesses for rank assignment, ring communication, and collective completion.</li><li>Established static networking and SSH forwarding between macOS model servers and a Linux orchestration client.</li></ul></div></article>
-        <article><div class="cv-entry-meta">2025—26</div><div><h3>ADNS — Anomaly Detection Network System</h3><p class="cv-employer">Senior Project</p><ul><li>Designed Python ingestion services and a Flask/Gunicorn backend for network-flow data and REST endpoints.</li><li>Implemented Isolation Forest anomaly scoring, database/API architecture, and a React/Vite monitoring dashboard.</li><li>Deployed the system to DigitalOcean Ubuntu using Nginx, systemd, and SSH.</li></ul></div></article>
+        <article><div class="cv-entry-meta">Jan. 2020—<br />Dec. 2024</div><div><h3>Junior Systems Administrator</h3><p class="cv-employer">The City College of New York, Computer Science Department · New York, NY</p><ul><li>Supported an approximately 15-computer, Kubernetes-connected lab environment serving up to 60 concurrent research and instructional users.</li><li>Deployed Linux servers, multi-user JupyterHub instances, Nginx reverse proxies, TLS certificates, and Let’s Encrypt access.</li><li>Developed Bash automation for remote SSH connections and administered DNS, DHCP, LDAP, VMware, and monitoring tooling.</li><li>Supported hybrid Azure, AWS, and on-premises infrastructure.</li></ul></div></article>
       </div>
     </section>
     <section class="cv-section">
-      <h2>Materials</h2>
+      <h2>Projects</h2>
+      <div class="cv-scroll-ornament" aria-hidden="true"><Ornament kind="vertical-vine" /><Ornament kind="vine" /></div>
+      <div class="cv-entries">
+        <article><div class="cv-entry-meta">2026</div><div><h3><a href="https://github.com/OffensiveGeneric/tyler-site">Tyler Kleint Personal Site</a></h3><p class="cv-employer">Astro engineering and visual-design project</p><ul><li>Built a server-rendered Astro and TypeScript site with semantic HTML, scoped and container-aware CSS, and native view transitions.</li><li>Created an accessible responsive-image workflow that generates AVIF and WebP derivatives for photography and writing.</li><li>Deployed the Node application behind Caddy on an Ubuntu DigitalOcean host with automated health checks and releases.</li></ul></div></article>
+        <article><div class="cv-entry-meta">2026</div><div><h3><a href="https://github.com/OffensiveGeneric/exo">Distributed AI Infrastructure</a></h3><p class="cv-employer">CCNY GlassLab</p><ul><li>Configured two Apple Silicon Mac Studio nodes for distributed MLX inference over Thunderbolt using JACCL.</li><li>Built distributed test harnesses for rank assignment, ring communication, and collective completion.</li><li>Established static networking and SSH forwarding between macOS model servers and a Linux orchestration client.</li></ul></div></article>
+        <article><div class="cv-entry-meta">2025—26</div><div><h3><a href="https://github.com/OffensiveGeneric/ADNS">ADNS — Anomaly Detection Network System</a></h3><p class="cv-employer">Senior Project</p><ul><li>Designed Python ingestion services and a Flask/Gunicorn backend for network-flow data and REST endpoints.</li><li>Implemented Isolation Forest anomaly scoring, database/API architecture, and a React/Vite monitoring dashboard.</li><li>Deployed the system to DigitalOcean Ubuntu using Nginx, systemd, and SSH.</li></ul></div></article>
+      </div>
+    </section>
+    <section class="cv-section">
+      <h2>Technical Skills</h2>
       <div><p class="cv-list">Linux · Ubuntu · Kubernetes · JupyterHub · Nginx · VMware<br />TCP/IP · DNS · DHCP · LDAP · SSH · TLS · Let’s Encrypt<br />Azure · AWS · DigitalOcean · Bash · Python · MLX · JACCL<br />Flask · Gunicorn · REST APIs · PostgreSQL · MySQL · React/Vite · Git · FastAPI · LM Studio</p></div>
     </section>
     <section class="cv-section">
@@ -41,18 +48,5 @@ import Ornament from "./Ornament.astro";
       <div><h3 class="cv-education">B.S., Computer Science</h3><p>The City College of New York · December 2025</p></div>
     </section>
   </div>
-  <footer class="cv-colophon">Typeset in Cormorant Garamond, Newsreader &amp; IBM Plex Mono. Set by hand in HTML and CSS.</footer>
+  <footer class="cv-colophon">Built with Astro, semantic HTML, modern CSS, SQLite, and an AVIF/WebP image pipeline.</footer>
 </article>
-
-<script is:inline>
-  document.querySelectorAll("[data-contact-value]").forEach((control) => {
-    control.addEventListener("click", () => {
-      const value = atob(control.dataset.contactValue ?? "");
-      if (control.dataset.contactKind === "email") {
-        control.replaceWith(Object.assign(document.createElement("a"), { href: `mailto:${value}`, textContent: value }));
-      } else {
-        control.replaceWith(Object.assign(document.createElement("span"), { textContent: value }));
-      }
-    }, { once: true });
-  });
-</script>

@@ -8,6 +8,7 @@ import responsiveBlogImages from './src/markdown/responsive-blog-images.mjs';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://ooknulsus.com',
   output: 'server',
   adapter: node({ mode: 'standalone' }),
   integrations: [react()],
