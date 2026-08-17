@@ -20,9 +20,9 @@ const { plain = false } = Astro.props;
   <header class="cv-heading">
     {!plain && <Ornament kind="divider" />}
     <h1 id="resume-title">Tyler Kleint</h1>
-    <p class="cv-subtitle">Linux Systems Administrator</p>
+    <p class="cv-subtitle">Linux Systems Administrator · Infrastructure Engineer</p>
     <address class="cv-contact">
-      <span>Bronx, New York</span><span aria-hidden="true"> · </span>
+      <span>Bronx, NY</span><span aria-hidden="true"> · </span>
       <a href="mailto:tyleralk@gmail.com">tyleralk@gmail.com</a><span aria-hidden="true"> · </span>
       <a href="https://github.com/OffensiveGeneric" rel="me">github.com/OffensiveGeneric</a><span aria-hidden="true"> · </span>
       <a href="https://www.linkedin.com/in/tyler-laboe-kleint/" rel="me">linkedin.com/in/tyler-laboe-kleint</a>
@@ -32,7 +32,17 @@ const { plain = false } = Astro.props;
   <div class="cv-body">
     <section class="cv-section">
       <h2>Summary</h2>
-      <div><p>Linux systems administrator and Computer Science graduate focused on university research computing, multiuser Linux services, and hybrid cloud infrastructure. Builds and operates Ubuntu, Docker, Kubernetes, JupyterHub, Nginx, VMware, Azure, and AWS environments using Bash, SSH, Python, and documented operational workflows.</p></div>
+      <div><p>Linux Systems Administrator with five years of experience supporting university research and computer science environments, plus ongoing Kubernetes and GPU research-infrastructure work. Administers Linux, virtualization, networking, identity, containers, cloud services, and web infrastructure; automates provisioning and operations with Ansible, Bash, SSH, and Python.</p></div>
+    </section>
+
+    <section class="cv-section">
+      <h2>Technical Skills</h2>
+      <div class="cv-skill-groups">
+        <div><h3>Linux &amp; Systems</h3><ul><li>Linux</li><li>Ubuntu</li><li>systemd</li><li>VMware</li><li>JupyterHub</li><li>Nginx</li><li>Caddy</li></ul></div>
+        <div><h3>Containers &amp; Cloud</h3><ul><li>Kubernetes</li><li>Docker</li><li>Ansible</li><li>AWS</li><li>Azure</li><li>DigitalOcean</li></ul></div>
+        <div><h3>Networking &amp; Security</h3><ul><li>TCP/IP</li><li>DNS</li><li>DHCP</li><li>LDAP</li><li>SSH</li><li>TLS</li><li>PXE</li></ul></div>
+        <div><h3>Automation &amp; Services</h3><ul><li>Bash</li><li>Python</li><li>Git</li><li>GitHub Actions</li><li>CI/CD</li><li>PostgreSQL</li><li>Redis/RQ</li><li>REST APIs</li></ul></div>
+      </div>
     </section>
 
     <section class="cv-section">
@@ -45,10 +55,10 @@ const { plain = false } = Astro.props;
             <h3>Junior Systems Administrator</h3>
             <p class="cv-employer">The City College of New York, Computer Science Department · New York, NY</p>
             <ul>
-              <li>Administered a multiuser Linux lab supporting university research and Computer Science instruction.</li>
+              <li>Administered a multi-user Linux lab supporting university research and computer science instruction.</li>
               <li>Deployed and maintained Ubuntu servers, JupyterHub services, Nginx reverse proxies, and TLS certificates issued through Let’s Encrypt.</li>
-              <li>Automated remote administration with Bash and SSH and operated DNS, DHCP, LDAP, VMware, and infrastructure-monitoring services.</li>
-              <li>Administered hybrid Azure, AWS, and on-premises infrastructure and diagnosed Linux service, network-connectivity, and access issues.</li>
+              <li>Automated recurring administration with Bash and SSH while operating DNS, DHCP, LDAP, VMware, and infrastructure monitoring.</li>
+              <li>Administered hybrid Azure, AWS, and on-premises infrastructure; diagnosed Linux service, network connectivity, and access-control incidents.</li>
             </ul>
           </div>
         </article>
@@ -56,30 +66,18 @@ const { plain = false } = Astro.props;
     </section>
 
     <section class="cv-section">
-      <h2>Current Infrastructure Work</h2>
+      <h2>Research Infrastructure</h2>
       {!plain && <div class="cv-scroll-ornament" aria-hidden="true"><Ornament kind="vertical-vine" /><Ornament kind="vine" /></div>}
       <div class="cv-entries">
         <article>
           <div class="cv-entry-meta"><time datetime="2025">2025</time> – Present</div>
           <div>
-            <h3><a href="https://github.com/OffensiveGeneric/glasslab-cluster-config">Glasslab Kubernetes Infrastructure</a></h3>
-            <p class="cv-employer">Independent research-computing lab</p>
+            <h3><a href="https://github.com/ccny-glasslab/glasslab-cluster-config">CCNY Glasslab — Research Infrastructure Engineering</a></h3>
+            <p class="cv-employer">Research infrastructure project</p>
             <ul>
-              <li>Built and administered a multi-node Kubernetes lab with Docker-based workloads, NVIDIA GPU workers, and Linux-hosted services.</li>
-              <li>Automated PXE provisioning, node configuration, package maintenance, and repeatable operational checks with Ansible, Bash, and documented runbooks.</li>
-              <li>Operated cluster networking, secrets, image distribution, workflow services, and incident-oriented validation from a dedicated Linux provisioner.</li>
-            </ul>
-          </div>
-        </article>
-        <article>
-          <div class="cv-entry-meta"><time datetime="2026">2026</time> – Present</div>
-          <div>
-            <h3><a href="https://github.com/OffensiveGeneric/exo">Distributed GPU Inference Lab</a></h3>
-            <p class="cv-employer">Independent infrastructure project · local fork of exo</p>
-            <ul>
-              <li>Configured a two-node Apple Silicon Mac Studio cluster for distributed MLX inference over Thunderbolt using JACCL.</li>
-              <li>Developed test harnesses for rank assignment, ring communication, and collective completion while diagnosing placement and post-connect failures in a local exo fork.</li>
-              <li>Established static networking and SSH forwarding between macOS model servers and a Linux orchestration client, documenting repeatable launch and recovery procedures.</li>
+              <li>Build and operate a multi-node Kubernetes and NVIDIA GPU research platform that turns approved experiment plans into bounded Jobs with traceable run artifacts.</li>
+              <li>Automate PXE provisioning, Ansible configuration, package maintenance, container-image delivery, and runbook-driven validation from a dedicated Linux provisioner.</li>
+              <li>Maintain a durable control plane spanning workflow APIs and registries, PostgreSQL, MinIO, NATS, local model serving, CI policy, and post-change smoke tests.</li>
             </ul>
           </div>
         </article>
@@ -96,39 +94,17 @@ const { plain = false } = Astro.props;
             <h3><a href="https://github.com/OffensiveGeneric/ADNS">ADNS — Anomaly Detection Network System</a></h3>
             <p class="cv-employer">Computer Science senior project</p>
             <ul>
-              <li>Designed Python ingestion services and a Flask/Gunicorn API for network-flow data.</li>
-              <li>Implemented Isolation Forest anomaly scoring, database-backed REST endpoints, and a React/Vite monitoring dashboard.</li>
-              <li>Deployed and operated the application on DigitalOcean Ubuntu with Nginx, systemd, SSH, and documented service controls.</li>
+              <li>Built an end-to-end anomaly-detection platform combining live <code>tshark</code> capture, Flask APIs, PostgreSQL, Redis/RQ asynchronous scoring, machine-learning detection, and a React dashboard.</li>
+              <li>Packaged the API, worker, frontend, PostgreSQL, Redis, and optional capture agent as a reproducible Docker Compose deployment with service health checks.</li>
             </ul>
           </div>
         </article>
-        <article>
-          <div class="cv-entry-meta"><time datetime="2026">2026</time> – Present</div>
-          <div>
-            <h3><a href="https://github.com/OffensiveGeneric/tyler-site">Personal Website and Delivery Pipeline</a></h3>
-            <p class="cv-employer">Astro engineering and deployment project</p>
-            <ul>
-              <li>Built a server-rendered Astro and TypeScript site with semantic HTML, accessible responsive images, and minimal client-side JavaScript.</li>
-              <li>Automated production releases through GitHub Actions with health-checked deployment to a Node service behind Caddy on Ubuntu.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="cv-section">
-      <h2>Technical Skills</h2>
-      <div class="cv-skill-groups">
-        <div><h3>Systems</h3><ul><li>Linux</li><li>Ubuntu</li><li>macOS</li><li>systemd</li><li>VMware</li><li>JupyterHub</li><li>Nginx</li><li>Caddy</li></ul></div>
-        <div><h3>Infrastructure</h3><ul><li>Docker</li><li>Kubernetes</li><li>Ansible</li><li>Containers</li><li>Azure</li><li>AWS</li><li>DigitalOcean</li><li>GitHub Actions</li><li>CI/CD</li></ul></div>
-        <div><h3>Networking &amp; Operations</h3><ul><li>TCP/IP</li><li>DNS</li><li>DHCP</li><li>LDAP</li><li>SSH</li><li>TLS</li><li>Troubleshooting</li><li>Patching</li><li>Service recovery</li><li>Runbooks</li></ul></div>
-        <div><h3>Development &amp; Data</h3><ul><li>Bash</li><li>Python</li><li>FastAPI</li><li>Flask</li><li>REST APIs</li><li>PostgreSQL</li><li>MySQL</li><li>Git</li><li>MLX</li><li>JACCL</li></ul></div>
       </div>
     </section>
 
     <section class="cv-section">
       <h2>Education</h2>
-      <div><h3 class="cv-education">Bachelor of Science in Computer Science</h3><p>The City College of New York · <time datetime="2025-12">December 2025</time></p></div>
+      <div><h3 class="cv-education">B.S., Computer Science</h3><p>The City College of New York (CUNY) · <time datetime="2025-12">December 2025</time></p></div>
     </section>
   </div>
 </article>
